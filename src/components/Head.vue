@@ -1,7 +1,7 @@
 <template>
   <header class="head">
     <img v-for='img in imgs' :class="setClass(img.class)" :src="setSrc(img.src)"/>
-    <img class="search" @click='openSearch' src="../assets/head/icon-search.png"/>
+    <img class="searchBtn" @click='openSearch' src="../assets/head/icon-search.png"/>
     <div class="searchPage">
       <div class="header">
         <div class="search">
@@ -12,7 +12,7 @@
         </div>
       </div>
     </div>
-    <div class="aside closeMenu" @click='toggleMenu'>
+    <div class="aside" @click='toggleMenu'>
       <div v-for='i in 3' class="line"></div>
     </div>
   </header>
@@ -89,7 +89,7 @@ export default {
   .baidu{
     right: 30%;
   }
-  .search{
+  .searchBtn{
     right: 15%;
     cursor: pointer;
   }

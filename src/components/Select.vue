@@ -8,7 +8,7 @@
       	<li v-for='i in 4'></li>
       </ul>
     </div>
-    <section>
+    <section class="news">
       <div v-for='n in news'>
         <a href="#" class="new">
           <img :src="setNewSrc(n.src)"/>
@@ -128,7 +128,7 @@ export default {
       }
     }
   }
-  section{
+  .news{
     padding: 0 10px;
     .new{
       height: 100px;
@@ -142,6 +142,7 @@ export default {
         width: 100px;
       }
       .intro{
+        width: 80%;
         height: 80px;
         display: flex;
         padding-left: 10px;
