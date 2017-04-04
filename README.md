@@ -4,10 +4,10 @@
 
 ### 首页截图
 <center>
-<img src="https://daoket.github.io/baijia/eg1.png" width='375' height='667'/>
+<img src="https://daoket.github.io/baijia/eg1.jpg" width='375' height='667'/>
 </center>
 <center>
-<img src="https://daoket.github.io/baijia/eg2.png" width='375' height='667'/>
+<img src="https://daoket.github.io/baijia/eg2.jpg" width='375' height='667'/>
 </center>
 
 ## 创建步骤
