@@ -171,6 +171,7 @@ export default {
     padding: 0 10px;
     .new{
       height: 100px;
+      color: #262627;
       border-bottom: 1px solid #eee;
       display: flex;
       justify-content: flex-start;
