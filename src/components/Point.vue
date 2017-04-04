@@ -16,7 +16,7 @@
               <span>25%</span>
             </div>
           </div>
-          <a class="join" href="#">进入专题></a>
+          <a class="join" href="javascript: void(0)">进入专题></a>
         </div>
       </div>
       <div class="prev">

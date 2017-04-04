@@ -1,10 +1,10 @@
 <template>
   <div class="select">
-    <div class="banner" @mouseenter='removeTimer' @mouseout="addTimer">
+    <div class="banner">
       <div class="box">
         <img v-for='img in imgs' class="img" :src="setBannerSrc(img.src)"/>
       </div>
-      <ul class="num" @mouseenter='changeImg($event)'>
+      <ul class="num">
       	<li v-for='i in 4'></li>
       </ul>
     </div>
@@ -57,20 +57,60 @@ export default {
         title: '超级重磅！迁都迈出第一步迁都迈出第一步迁都迈出第一步，雄安新区完整投...',
         author: '君临',
         time: '12:36'
-      }],
-      timer: ''
+      }]
     }
   },
   mounted () {
     let num = 0
-    let oImg = $('.select .box img')
-    let len = oImg.length
-    let carousel = () => {
+    let timer = null
+    let time = 3000
+    let imgW = window.innerWidth
+    let imgs = document.querySelectorAll('.select .box img')
+    let nums = document.querySelectorAll('.select .num li')
+    let len = imgs.length - 1
+    function carousel () {
       num === len ? num = 0 : num++
-      oImg.eq(num).hide().siblings().show()
-      $('.num li').eq(num).addClass('active').siblings().removeClass('active')
+      changeImg(imgs, nums, num)
+      clickShow()
     }
-    this.timer = setInterval(carousel, 1500)
+    $('.banner').hover(stop, play)
+    // 点击切换图片
+    function clickShow () {
+      for (let i = 0; i < nums.length; i++) {
+        nums[i].addEventListener('click', function (e) {
+          let activeIndex = getIndex(nums, e.target)
+          changeImg(imgs, nums, activeIndex)
+        })
+      }
+    }
+    // 添加动画
+    function play () {
+      timer = setInterval(function () {
+        carousel()
+      }, time)
+    }
+    // 清除动画
+    function stop () {
+      clearInterval(timer)
+    }
+    // 切换图片
+    function changeImg (arr1, arr2, num) {
+      for (let i = 0; i < arr1.length; i++) {
+        if (num === i) {
+          $(arr1[i]).show()
+          arr2[i].className = 'active'
+        } else {
+          $(arr1[i]).hide()
+          arr2[i].className = ''
+        }
+      }
+    }
+    // 得到特定对象下标
+    function getIndex (arr, obj) {
+      return [].indexOf.call(arr, obj)
+    }
+    play()
+    $('.select .box img').css('width', imgW)
   },
   methods: {
     setBannerSrc (src) {
@@ -81,15 +121,6 @@ export default {
     },
     removeTimer () {
       clearInterval(this.timer)
-    },
-    addTimer () {
-      this.timer
-    },
-    changeImg (e) {
-      clearInterval(this.timer)
-      var num = $(e.target).index()
-      $(e.target).addClass('active').siblings().removeClass('active')
-      $('.select .box img').eq(num).fadeIn().siblings().fadeOut()
     }
   }
 }
@@ -100,9 +131,17 @@ export default {
   background: #fff;
   .banner{
     position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
     .box{
-      max-height: 200px;
-      overflow: hidden;
+      height: 200px;
+      width: 400%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: flex;
+      justify-content: flex-start;
     }
     .img{
       height: 200px;
@@ -116,7 +155,7 @@ export default {
       bottom: 10px;
       right: 10px;
       .active{
-        background: #058;
+        background: #058 !important;
       }
       li{
         height: 10px;

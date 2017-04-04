@@ -7,8 +7,8 @@
           <p class="name">{{a.name}}</p>
           <p class="slogan">{{a.slogan}}</p>
         </div>
-        <span class="focus" v-if='userStatus' @click='userStatus = !userStatus'>关注</span>
-        <span class="focus focused" @click='userStatus = !userStatus' v-else>已关注</span>
+        <span class="focus" v-if='a.status' @click='a.status = !a.status'>关注</span>
+        <span class="focus focused" @click='a.status = !a.status' v-else>已关注</span>
       </div>
     </div>
     <section class="more">
@@ -18,8 +18,8 @@
           <p class="name">{{o.name}}</p>
           <p class="slogan">{{o.slogan}}</p>
         </div>
-        <span class="focus" v-if='otherStatus' @click='otherStatus = !otherStatus' >关注</span>
-        <span class="focus focused" @click='otherStatus = !otherStatus' v-else>已关注</span>
+        <span class="focus" v-if='o.status' @click='o.status = !o.status' >关注</span>
+        <span class="focus focused" @click='o.status = !o.status' v-else>已关注</span>
       </div>
     </section>
   </section>
@@ -30,37 +30,42 @@ export default {
   name: 'author',
   data () {
     return {
-      userStatus: true,
-      otherStatus: true,
       author: [{
         src: require('../assets/author/author.jpg'),
         name: '变革家',
-        slogan: '帮股权投资者把好第一关！'
+        slogan: '帮股权投资者把好第一关！',
+        status: true
       }, {
         src: require('../assets/author/author.jpg'),
         name: '变革家',
-        slogan: '帮股权投资者把好第一关！'
+        slogan: '帮股权投资者把好第一关！',
+        status: true
       }, {
         src: require('../assets/author/author.jpg'),
         name: '变革家',
-        slogan: '帮股权投资者把好第一关！'
+        slogan: '帮股权投资者把好第一关！',
+        status: true
       }, {
         src: require('../assets/author/author.jpg'),
         name: '变革家',
-        slogan: '帮股权投资者把好第一关！'
+        slogan: '帮股权投资者把好第一关！',
+        status: true
       }],
       other: [{
         src: require('../assets/author/author.jpg'),
         name: '40秒',
-        slogan: '认识最疯狂的天才'
+        slogan: '认识最疯狂的天才',
+        status: true
       }, {
         src: require('../assets/author/author.jpg'),
         name: '40秒',
-        slogan: '认识最疯狂的天才'
+        slogan: '认识最疯狂的天才',
+        status: true
       }, {
         src: require('../assets/author/author.jpg'),
         name: '40秒',
-        slogan: '认识最疯狂的天才'
+        slogan: '认识最疯狂的天才',
+        status: true
       }]
     }
   },
