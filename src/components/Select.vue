@@ -64,7 +64,6 @@ export default {
     let num = 0
     let timer = null
     let time = 3000
-    let imgW = window.innerWidth
     let imgs = document.querySelectorAll('.select .box img')
     let nums = document.querySelectorAll('.select .num li')
     let len = imgs.length - 1
@@ -110,7 +109,6 @@ export default {
       return [].indexOf.call(arr, obj)
     }
     play()
-    $('.select .box img').css('width', imgW)
   },
   methods: {
     setBannerSrc (src) {
@@ -136,7 +134,7 @@ export default {
     overflow: hidden;
     .box{
       height: 200px;
-      width: 400%;
+      width: 100%;
       position: absolute;
       left: 0;
       top: 0;
