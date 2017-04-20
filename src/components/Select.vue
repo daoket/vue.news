@@ -67,7 +67,7 @@ export default {
       for (var i in data) {
         if (data[i].imageurls) {
           let html = `<div>
-                      <a href="${data[i].link}" class="new"><img src="${data[i].imageurls[0].url}">
+                      <a href="#" class="new"><img src="${data[i].imageurls[0].url}">
                         <div class="intro">
                           <h4>${data[i].title}</h4>
                           <p><span>${data[i].source}</span> | <span>${data[i].pubDate}</span></p>
