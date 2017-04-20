@@ -9,7 +9,7 @@
       </ul>
     </div>
     <section class="news">
-      <div v-for='n in news'>
+      <!--<div v-for='n in news'>
         <a href="#" class="new">
           <img :src="setNewSrc(n.src)"/>
           <div class="intro">
@@ -17,7 +17,7 @@
             <p><span>{{n.author}}</span> | <span>{{n.time}}</span></p>
           </div>
         </a>
-      </div>
+      </div>-->
     </section>
   </div>
 </template>
@@ -47,17 +47,36 @@ export default {
         title: '超级重磅！迁都迈出第一步迁都迈出第一步迁都迈出第一步，雄安新区完整投...',
         author: '君临',
         time: '12:36'
-      }, {
-        src: require('../assets/select/beijing.jpg'),
-        title: '超级重磅！迁都迈出第一步迁都迈出第一步迁都迈出第一步，雄安新区完整投...',
-        author: '君临',
-        time: '12:36'
-      }, {
-        src: require('../assets/select/beijing.jpg'),
-        title: '超级重磅！迁都迈出第一步迁都迈出第一步迁都迈出第一步，雄安新区完整投...',
-        author: '君临',
-        time: '12:36'
       }]
+    }
+  },
+  created: function () {
+    let newsUrl = 'https://route.showapi.com/109-35?page=1&needContent=0&needHtml=1&showapi_appid=34477&showapi_sign=cfa5957a730f43d38886bd16469b2a86&channelId=5572a108b3cdc86cf39001cd'
+    requestData(newsUrl)
+    function requestData (url) {
+      $.ajax({
+        type: 'get',
+        url: url,
+        async: true,
+        success: function (res) {
+          loadNews(res.showapi_res_body.pagebean.contentlist)
+        }
+      })
+    }
+    function loadNews (data) {
+      for (var i in data) {
+        if (data[i].imageurls) {
+          let html = `<div>
+                      <a href="${data[i].link}" class="new"><img src="${data[i].imageurls[0].url}">
+                        <div class="intro">
+                          <h4>${data[i].title}</h4>
+                          <p><span>${data[i].source}</span> | <span>${data[i].pubDate}</span></p>
+                        </div>
+                      </a>
+                    </div>`
+          $(html).appendTo('.news')
+        }
+      }
     }
   },
   mounted () {

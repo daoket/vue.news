@@ -13,13 +13,17 @@
     </div>
     <section class="more">
       <div v-for='o in other' class="other">
-        <img :src="setOtherSrc(o.src)"/>
-        <div class="intro">
-          <p class="name">{{o.name}}</p>
-          <p class="slogan">{{o.slogan}}</p>
+        <div class="authorMsg">
+          <img :src="setOtherSrc(o.src)"/>
+          <div class="intro">
+            <p class="name">{{o.name}}</p>
+            <p class="slogan">{{o.slogan}}</p>
+          </div>
         </div>
-        <span class="focus" v-if='o.status' @click='o.status = !o.status' >关注</span>
-        <span class="focus focused" @click='o.status = !o.status' v-else>已关注</span>
+        <div>
+          <span class="focus" v-if='o.status' @click='o.status = !o.status' >关注</span>
+          <span class="focus focused" @click='o.status = !o.status' v-else>已关注</span>
+        </div>
       </div>
     </section>
   </section>
@@ -37,8 +41,8 @@ export default {
         status: true
       }, {
         src: require('../assets/author/author.jpg'),
-        name: '变革家',
-        slogan: '帮股权投资者把好第一关！',
+        name: '懂懂笔记',
+        slogan: '20年国内财经媒体从业记录者！',
         status: true
       }, {
         src: require('../assets/author/author.jpg'),
@@ -47,14 +51,14 @@ export default {
         status: true
       }, {
         src: require('../assets/author/author.jpg'),
-        name: '变革家',
-        slogan: '帮股权投资者把好第一关！',
+        name: '娱乐硬糖',
+        slogan: '有温度的泛娱乐产业自媒体。！',
         status: true
       }],
       other: [{
         src: require('../assets/author/author.jpg'),
-        name: '40秒',
-        slogan: '认识最疯狂的天才',
+        name: '邝新华',
+        slogan: '新周刊主笔',
         status: true
       }, {
         src: require('../assets/author/author.jpg'),
@@ -63,8 +67,8 @@ export default {
         status: true
       }, {
         src: require('../assets/author/author.jpg'),
-        name: '40秒',
-        slogan: '认识最疯狂的天才',
+        name: '艾问iAsk',
+        slogan: '科技商业价值发现者',
         status: true
       }]
     }
@@ -120,9 +124,10 @@ export default {
         }
       }
       .focus{
+        width: 80px;
         font-size: 13px;
         display: inline-block;
-        padding: 4px 20px;
+        padding: 4px 0;
         background: #E94C3D;
         border-radius: 10px;
         cursor: pointer;
@@ -140,31 +145,38 @@ export default {
       background: #eee;
       display: flex;
       margin-bottom: 10px;
-      justify-content: flex-start;
+      justify-content: space-between;
       padding: 0 10px;
       align-items: center;
-      img{
-        height: 60px;
-        width: 60px;
-        border-radius: 50%;
-      }
-      .intro{
-        height: 40px;
-        margin: 0 10px;
+      .authorMsg{
         display: flex;
-        flex-direction: column;
         justify-content: space-between;
-        .slogan{
-          font-size: 13px;
-          color: #666;
+        align-items: center;
+        img{
+          height: 80px;
+          width: 80px;
+          border-radius: 50%;
+        }
+        .intro{
+          height: 40px;
+          margin: 0 10px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          .slogan{
+            font-size: 13px;
+            color: #666;
+          }
         }
       }
       .focus{
+        display: inline-block;
+        width: 80px;
         color: #fff;
         cursor: pointer;
         font-size: 13px;
         text-align: center;
-        padding: 5px 15px;
+        padding: 5px 0;
         background: #D5483A;
         border-radius: 15px;
         margin-left: 10px;
