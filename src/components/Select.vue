@@ -37,17 +37,7 @@ export default {
       }, {
         src: require('../assets/select/d.jpg')
       }],
-      news: [{
-        src: require('../assets/select/beijing.jpg'),
-        title: '超级重磅！迁都迈出第一步迁都迈出第一步迁都迈出第一步，雄安新区完整投...',
-        author: '君临',
-        time: '12:36'
-      }, {
-        src: require('../assets/select/beijing.jpg'),
-        title: '超级重磅！迁都迈出第一步迁都迈出第一步迁都迈出第一步，雄安新区完整投...',
-        author: '君临',
-        time: '12:36'
-      }]
+      newsDate: []
     }
   },
   created: function () {
@@ -59,6 +49,7 @@ export default {
         url: url,
         async: true,
         success: function (res) {
+          this.newsDate = res.showapi_res_body.pagebean.contentlist
           loadNews(res.showapi_res_body.pagebean.contentlist)
         }
       })
@@ -78,8 +69,10 @@ export default {
         }
       }
     }
+    console.log('叩首为梦 码梦为生！')
   },
   mounted () {
+    console.log(this.newsDate)
     let num = 0
     let timer = null
     let time = 3000
