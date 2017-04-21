@@ -9,15 +9,18 @@
       </ul>
     </div>
     <section class="news">
-      <!--<div v-for='n in news'>
-        <a href="#" class="new">
-          <img :src="setNewSrc(n.src)"/>
-          <div class="intro">
-            <h4>{{n.title}}</h4>
-            <p><span>{{n.author}}</span> | <span>{{n.time}}</span></p>
-          </div>
-        </a>
-      </div>-->
+      <div v-if='newsDate.lenght'>
+        <div v-for='n in newsDate'>
+          <a href="#" class="new">
+            <img :src="setNewSrc(n.imageurls[0].url)"/>
+            <div class="intro">
+              <h4>{{n.title}}</h4>
+              <p><span>{{n.source}}</span> | <span>{{n.pubDate}}</span></p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="fail" v-else>~~~~(>_<)~~~~， 请求到数据失败!</div>
     </section>
   </div>
 </template>
@@ -41,6 +44,7 @@ export default {
     }
   },
   created: function () {
+    let self = this
     let newsUrl = 'https://route.showapi.com/109-35?page=1&needContent=0&needHtml=1&showapi_appid=34477&showapi_sign=cfa5957a730f43d38886bd16469b2a86&channelId=5572a108b3cdc86cf39001cd'
     requestData(newsUrl)
     function requestData (url) {
@@ -49,30 +53,21 @@ export default {
         url: url,
         async: true,
         success: function (res) {
-          this.newsDate = res.showapi_res_body.pagebean.contentlist
-          loadNews(res.showapi_res_body.pagebean.contentlist)
+          let data = res.showapi_res_body.pagebean.contentlist
+          for (var i = 0; i < data.length; i++) {
+            if (data[i].imageurls[0]) {
+              self.newsDate.push(data[i])
+            }
+          }
+        },
+        error: function (err) {
+          console.log(err.statusText)
         }
       })
-    }
-    function loadNews (data) {
-      for (var i in data) {
-        if (data[i].imageurls) {
-          let html = `<div>
-                      <a href="#" class="new"><img src="${data[i].imageurls[0].url}">
-                        <div class="intro">
-                          <h4>${data[i].title}</h4>
-                          <p><span>${data[i].source}</span> | <span>${data[i].pubDate}</span></p>
-                        </div>
-                      </a>
-                    </div>`
-          $(html).appendTo('.news')
-        }
-      }
     }
     console.log('叩首为梦 码梦为生！')
   },
   mounted () {
-    console.log(this.newsDate)
     let num = 0
     let timer = null
     let time = 3000
@@ -126,8 +121,8 @@ export default {
     setBannerSrc (src) {
       return src
     },
-    setNewSrc (src) {
-      return src
+    setNewSrc (url) {
+      return url
     },
     removeTimer () {
       clearInterval(this.timer)
@@ -215,6 +210,12 @@ export default {
           color: #666;
         }
       }
+    }
+    .fail{
+      min-height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }

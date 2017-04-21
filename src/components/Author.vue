@@ -132,6 +132,7 @@ export default {
         border-radius: 10px;
         cursor: pointer;
         margin: 10px 0;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
       }
       .focused{
         background: #262627;
@@ -180,6 +181,7 @@ export default {
         background: #D5483A;
         border-radius: 15px;
         margin-left: 10px;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
       }
       .focused{
         background: #262627;
