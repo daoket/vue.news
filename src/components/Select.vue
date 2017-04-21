@@ -9,7 +9,7 @@
       </ul>
     </div>
     <section class="news">
-      <div v-if='newsDate.lenght'>
+      <div v-if='requestStatus'>
         <div v-for='n in newsDate'>
           <a href="#" class="new">
             <img :src="setNewSrc(n.imageurls[0].url)"/>
@@ -19,8 +19,9 @@
             </div>
           </a>
         </div>
+        <button class="loadMore" v-show='loadStatus'>{{loadMore}}</button>
       </div>
-      <div class="fail" v-else>~~~~(>_<)~~~~， 请求到数据失败!</div>
+      <div class="fail" v-else>{{failMsg}}</div>
     </section>
   </div>
 </template>
@@ -40,37 +41,26 @@ export default {
       }, {
         src: require('../assets/select/d.jpg')
       }],
-      newsDate: []
+      newsDate: [],
+      requestStatus: true,
+      loadStatus: false,
+      loadMore: '点击加载更多',
+      failMsg: '~~~~(>_<)~~~~， 请求到数据失败!',
+      newsUrl: 'https://route.showapi.com/109-35?page=',
+      page: 1,
+      params: '&needContent=0&needHtml=1&showapi_appid=34477&showapi_sign=cfa5957a730f43d38886bd16469b2a86&channelId=5572a108b3cdc86cf39001cd'
     }
   },
   created: function () {
-    let self = this
-    let newsUrl = 'https://route.showapi.com/109-35?page=1&needContent=0&needHtml=1&showapi_appid=34477&showapi_sign=cfa5957a730f43d38886bd16469b2a86&channelId=5572a108b3cdc86cf39001cd'
-    requestData(newsUrl)
-    function requestData (url) {
-      $.ajax({
-        type: 'get',
-        url: url,
-        async: true,
-        success: function (res) {
-          let data = res.showapi_res_body.pagebean.contentlist
-          for (var i = 0; i < data.length; i++) {
-            if (data[i].imageurls[0]) {
-              self.newsDate.push(data[i])
-            }
-          }
-        },
-        error: function (err) {
-          console.log(err.statusText)
-        }
-      })
-    }
+    // 请求数据
+    this.requestData(this.newsUrl + this.page + this.params)
     console.log('叩首为梦 码梦为生！')
   },
   mounted () {
     let num = 0
-    let timer = null
+    let self = this
     let time = 3000
+    let timer = null
     let imgs = document.querySelectorAll('.select .box img')
     let nums = document.querySelectorAll('.select .num li')
     let len = imgs.length - 1
@@ -116,16 +106,45 @@ export default {
       return [].indexOf.call(arr, obj)
     }
     play()
+    // 点击加载更多
+    $('.loadMore').on('click', function () {
+      self.page++
+      self.requestData(self.newsUrl + self.page + self.params)
+    })
   },
   methods: {
+    // 设置轮播图
     setBannerSrc (src) {
       return src
     },
+    // 设置新闻图片
     setNewSrc (url) {
       return url
     },
     removeTimer () {
       clearInterval(this.timer)
+    },
+    // fetch异步请求函数
+    requestData (url) {
+      let self = this
+      fetch(url)
+        .then(function (res) {
+          return res.status
+                 ? Promise.resolve(res)
+                 : new Error(Promise.reject(res))
+        })
+        .then(function (res) {
+          return res.json()
+        })
+        .then(function (res) {
+          let data = res.showapi_res_body.pagebean.contentlist
+          for (var i = 0; i < data.length; i++) {
+            if (data[i].imageurls[0]) {
+              self.newsDate.push(data[i])
+            }
+          }
+          self.loadStatus = true
+        })
     }
   }
 }
@@ -173,6 +192,7 @@ export default {
     }
   }
   .news{
+    min-height: 500px;
     padding: 0 10px;
     .new{
       height: 100px;
@@ -210,6 +230,20 @@ export default {
           color: #666;
         }
       }
+    }
+    .loadMore{
+      height: 50px;
+      width: 100%;
+      color: #545454;
+      background: #eee;
+      text-align: center;
+      line-height: 50px;
+      font-size: 13px;
+      border: none;
+      border-radius: 0;
+      outline: none;
+      margin-bottom: 10px;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);;
     }
     .fail{
       min-height: 300px;
