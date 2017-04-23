@@ -57,15 +57,38 @@ export default {
     console.log('叩首为梦 码梦为生！')
   },
   mounted () {
-    let num = 0
-    let self = this
-    let time = 3000
-    let timer = null
+    let [num, self, time, timer] = [0, this, 3000, null]
     let imgs = document.querySelectorAll('.select .box img')
     let nums = document.querySelectorAll('.select .num li')
     let len = imgs.length - 1
-    function carousel () {
+    let [startX, endX] = [0, 0]
+    document.addEventListener('touchstart', touchstartHanler, false)
+    document.addEventListener('touchmove', touchmoveHanler, false)
+    document.addEventListener('touchend', touchendHanler, false)
+    function touchstartHanler (e) {
+      stop()
+      startX = e.touches[0].pageX
+    }
+    function touchmoveHanler (e) {
+      endX = e.touches[0].pageY
+    }
+    function touchendHanler (e) {
+      if ((startX - endX) > 0) {
+        next()
+      } else {
+        prev()
+      }
+      play()
+    }
+    // 下一张
+    function next () {
       num === len ? num = 0 : num++
+      changeImg(imgs, nums, num)
+      clickShow()
+    }
+    // 上一张
+    function prev () {
+      num === 0 ? num = len : num--
       changeImg(imgs, nums, num)
       clickShow()
     }
@@ -82,7 +105,7 @@ export default {
     // 添加动画
     function play () {
       timer = setInterval(function () {
-        carousel()
+        next()
       }, time)
     }
     // 清除动画
