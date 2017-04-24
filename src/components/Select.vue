@@ -63,6 +63,7 @@ export default {
     let self = this
     let timer = null
     let imgWidth = $(window).width()
+    let eventType = 'ontoucstart' in document.documentElement ? 'touchstart' : 'click'
     $('.box img').css('width', imgWidth + 'px')
     $('.box').css('width', imgWidth * 4 + 'px')
     document.addEventListener('touchstart', touchstartHandler, false)
@@ -114,7 +115,7 @@ export default {
       clearInterval(timer)
     }
     // 点击加载更多
-    $('.loadMore').on('click', function () {
+    $('.loadMore').on(eventType, function () {
       self.page++
       self.requestData(self.newsUrl + self.page + self.params)
     })
@@ -226,7 +227,6 @@ export default {
           -webkit-line-clamp: 2;
           text-overflow: ellipsis;
           -webkit-box-orient: vertical;
-
         }
         p{
           font-size: 13px;
@@ -246,7 +246,6 @@ export default {
       border-radius: 0;
       outline: none;
       margin-bottom: 10px;
-      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);;
     }
     .fail{
       min-height: 300px;
