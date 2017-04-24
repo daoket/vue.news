@@ -25,7 +25,7 @@
             <span class="times">{{p.times}}</span>
             <h2>{{p.title}}</h2>
              <p>{{p.msg}}</p>
-             <a class="join" href="#"> > </a>
+             <a class="join" href="javascript: void(0)"> > </a>
           </div>
         </div>
       </div>

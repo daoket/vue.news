@@ -11,7 +11,7 @@
     <section class="news">
       <div v-if='requestStatus'>
         <div v-for='n in newsDate'>
-          <a href="#" class="new">
+          <a href="javascript: void(0)" class="new">
             <img :src="setNewSrc(n.imageurls[0].url)"/>
             <div class="intro">
               <h4>{{n.title}}</h4>
@@ -57,78 +57,62 @@ export default {
     console.log('叩首为梦 码梦为生！')
   },
   mounted () {
-    let [num, self, time, timer] = [0, this, 3000, null]
-    let imgs = document.querySelectorAll('.select .box img')
-    let nums = document.querySelectorAll('.select .num li')
-    let len = imgs.length - 1
-    let [startX, endX] = [0, 0]
-    document.addEventListener('touchstart', touchstartHanler, false)
-    document.addEventListener('touchmove', touchmoveHanler, false)
-    document.addEventListener('touchend', touchendHanler, false)
-    function touchstartHanler (e) {
+    let startX
+    let endX
+    let i = 0
+    let self = this
+    let timer = null
+    let imgWidth = $(window).width()
+    $('.box img').css('width', imgWidth + 'px')
+    $('.box').css('width', imgWidth * 4 + 'px')
+    document.addEventListener('touchstart', touchstartHandler, false)
+    document.addEventListener('touchmove', touchmoveHandler, false)
+    document.addEventListener('touchend', touchendHandler, false)
+    function touchstartHandler (e) {
       stop()
       startX = e.touches[0].pageX
     }
-    function touchmoveHanler (e) {
-      endX = e.touches[0].pageY
+    function touchmoveHandler (e) {
+      endX = e.touches[0].pageX
     }
-    function touchendHanler (e) {
-      if ((startX - endX) > 0) {
-        next()
-      } else {
-        prev()
-      }
-      play()
+    function touchendHandler (e) {
+      (startX - endX) > 120 ? next() : prev()
+      setTimeout(play, 2000)
     }
-    // 下一张
+    play()
     function next () {
-      num === len ? num = 0 : num++
-      changeImg(imgs, nums, num)
-      clickShow()
-    }
-    // 上一张
-    function prev () {
-      num === 0 ? num = len : num--
-      changeImg(imgs, nums, num)
-      clickShow()
-    }
-    $('.banner').hover(stop, play)
-    // 点击切换图片
-    function clickShow () {
-      for (let i = 0; i < nums.length; i++) {
-        nums[i].addEventListener('click', function (e) {
-          let activeIndex = getIndex(nums, e.target)
-          changeImg(imgs, nums, activeIndex)
-        })
+      if (i < 3) {
+        i++
+        $('.banner .box').css('transform', 'translateX(' + -imgWidth * i + 'px)')
+        $($('.banner .num li')[i]).addClass('active').siblings().removeClass('active')
+      } else {
+        return false
       }
     }
-    // 添加动画
-    function play () {
-      timer = setInterval(function () {
-        next()
-      }, time)
+    function prev () {
+      if (i > 0) {
+        i--
+        $('.banner .box').css('transform', 'translateX(' + -imgWidth * i + 'px)')
+        $($('.banner .num li')[i]).addClass('active').siblings().removeClass('active')
+      } else {
+        return false
+      }
     }
-    // 清除动画
+    function play () {
+      stop()
+      timer = setInterval(function () {
+        if (i < 3) {
+          i++
+          $('.banner .box').css('transform', 'translateX(' + -imgWidth * i + 'px)')
+          $($('.banner .num li')[i]).addClass('active').siblings().removeClass('active')
+        } else {
+          i = -1
+        }
+      }, 2000)
+    }
     function stop () {
       clearInterval(timer)
     }
-    // 切换图片
-    function changeImg (arr1, arr2, num) {
-      for (let i = 0; i < arr1.length; i++) {
-        if (num === i) {
-          $(arr1[i]).show()
-          arr2[i].className = 'active'
-        } else {
-          $(arr1[i]).hide()
-          arr2[i].className = ''
-        }
-      }
-    }
-    // 得到特定对象下标
-    function getIndex (arr, obj) {
-      return [].indexOf.call(arr, obj)
-    }
-    play()
     // 点击加载更多
     $('.loadMore').on('click', function () {
       self.page++
@@ -183,16 +167,12 @@ export default {
     overflow: hidden;
     .box{
       height: 200px;
-      width: 100%;
-      position: absolute;
-      left: 0;
-      top: 0;
+      position: relative;
       display: flex;
-      justify-content: flex-start;
+      transition: all 0.5s;
     }
     .img{
       height: 200px;
-      width: 100%;
       transition: all 1s;
     }
     .num{
