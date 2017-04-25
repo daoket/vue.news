@@ -8,6 +8,7 @@
       	<li v-for='i in 4'></li>
       </ul>
     </div>
+    <div class="spinner"></div>
     <section class="news">
       <div v-if='requestStatus'>
         <div v-for='n in newsDate'>
@@ -117,6 +118,7 @@ export default {
     // 点击加载更多
     $('.loadMore').on(eventType, function () {
       self.page++
+      $('.spinner').show()
       self.requestData(self.newsUrl + self.page + self.params)
     })
   },
@@ -146,6 +148,7 @@ export default {
         })
         .then(function (res) {
           let data = res.showapi_res_body.pagebean.contentlist
+          $('.spinner').hide()
           for (var i = 0; i < data.length; i++) {
             if (data[i].imageurls[0]) {
               self.newsDate.push(data[i])
@@ -248,11 +251,44 @@ export default {
       margin-bottom: 10px;
     }
     .fail{
-      min-height: 300px;
       display: flex;
-      justify-content: center;
+      min-height: 300px;
       align-items: center;
+      justify-content: center;
     }
+  }
+}
+/*加载动画*/
+.spinner {
+  position: fixed;
+  left: 40%;
+  bottom: 10%;
+  width: 80px;
+  height: 80px;
+  margin: 50px auto;
+  background-color: #69C61D
+ 
+  border-radius: 100%; 
+  -webkit-animation: scaleout 1.0s infinite ease-in-out;
+  animation: scaleout 1.0s infinite ease-in-out;
+}
+ 
+@-webkit-keyframes scaleout {
+  0% { -webkit-transform: scale(0.0) }
+  100% {
+    -webkit-transform: scale(1.0);
+    opacity: 0;
+  }
+}
+ 
+@keyframes scaleout {
+  0% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 100% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+    opacity: 0;
   }
 }
 </style>
