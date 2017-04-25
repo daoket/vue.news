@@ -1,27 +1,29 @@
 <template>
   <div id="app">
     <div class="page">
-      <HeadMobile></HeadMobile>
-      <NavMobile></NavMobile>
-      <router-view></router-view>
-      <FootMobile></FootMobile>
+      <app-head></app-head>
+      <app-nav></app-nav>
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
+      <app-foot></app-foot>
     </div>
-    <MenuMobile></MenuMobile>
+    <app-menu></app-menu>
   </div>
 </template>
 
 <script>
-import HeadMobile from '@/components/Head'
-import MenuMobile from '@/components/Menu'
-import NavMobile from '@/components/Nav'
-import FootMobile from '@/components/Foot'
+import AppHead from '@/components/Head'
+import AppMenu from '@/components/Menu'
+import AppNav from '@/components/Nav'
+import AppFoot from '@/components/Foot'
 export default {
   name: 'app',
   components: {
-    HeadMobile,
-    MenuMobile,
-    NavMobile,
-    FootMobile
+    'app-head': AppHead,
+    'app-menu': AppMenu,
+    'app-nav': AppNav,
+    'app-foot': AppFoot
   }
 }
 </script>

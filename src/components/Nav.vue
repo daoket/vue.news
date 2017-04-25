@@ -2,9 +2,7 @@
   <section class="nav">
     <!--v-for遍历路由-->
     <div class="nav" v-for='m in menus'>
-      <keep-alive>
-        <router-link :to='setPaht(m.path)'><span>{{m.text}}</span></router-link>
-      </keep-alive>
+      <router-link :to='setPaht(m.path)'><span>{{m.text}}</span></router-link>
     </div>
   </section>
 </template>
