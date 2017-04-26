@@ -41,6 +41,7 @@ npm run build
 <center>
 <img src="https://daoket.github.io/baijia/eg1.jpg" width='375' height='667'/>
 </center>
+
 ### 菜单
 <center>
 <img src="https://daoket.github.io/baijia/eg2.jpg" width='375' height='667'/>
