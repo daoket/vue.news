@@ -3,8 +3,8 @@
     <div class="banner">
       <swiper :options="swiperOption"  ref="mySwiper">
         <!-- 这部分放你要渲染的那些内容 -->
-        <swiper-slide v-for='img in imgs' :key="img.id">
-          <img :src="setBannerSrc(img.src)"/>
+        <swiper-slide v-for='img in banners' :key="img.channelId">
+          <img :src="setBannerSrc(img)"/>
         </swiper-slide>
         <!-- 这是轮播的小圆点 -->
         <div class="swiper-pagination" slot="pagination"></div>
@@ -14,18 +14,18 @@
     <div class="spinner" v-show='loadAnimation'></div>
     <section class="news">
       <div v-if='requestStatus'>
-        <div v-for='n in newsDate'>
-          <a href="javascript: void(0)" class="new">
-            <img :src="setNewSrc(n.imageurls[0].url)"/>
+        <div v-for='news in newsDate'>
+          <a href="javascript: void(0)" class="new" :key='news.channelId'>
+            <img v-lazy='news.imageurls[0].url' :src="setNewSrc(news.imageurls[0].url)"/>
             <div class="intro">
-              <h4>{{n.title}}</h4>
-              <p><span>{{n.source}}</span> | <span>{{n.pubDate}}</span></p>
+              <h4>{{news.title}}</h4>
+              <p><span>{{news.source}}</span> | <span>{{news.pubDate}}</span></p>
             </div>
           </a>
         </div>
-        <button class="loadMore" @click='loadMoreBtn' v-show='loadBtn'>{{loadMore}}</button>
+        <button class="loadMore" @click='loadMoreBtn' v-show='loadBtn'>点击加载更多</button>
       </div>
-      <div class="fail" v-else>{{failMsg}}</div>
+      <div class="fail" v-else>~~~~(>_<)~~~~， 请求到数据失败!</div>
     </section>
   </div>
 </template>
@@ -37,19 +37,7 @@ export default {
   name: 'select',
   data () {
     return {
-      imgs: [{
-        id: 0,
-        src: require('../assets/select/a.jpg')
-      }, {
-        id: 1,
-        src: require('../assets/select/b.jpg')
-      }, {
-        id: 2,
-        src: require('../assets/select/c.jpg')
-      }, {
-        id: 3,
-        src: require('../assets/select/d.jpg')
-      }],
+      banners: [],
       swiperOption: {
         pagination: '.swiper-pagination',
         slidesPerView: 'auto',
@@ -62,15 +50,12 @@ export default {
           this.index = swiper.realIndex
         }
       },
-      swiperSlides: [1, 2, 3, 4, 5],
       newsDate: [],
-      requestStatus: true,
       loadBtn: false,
+      requestStatus: true,
       loadAnimation: true,
-      loadMore: '点击加载更多',
-      failMsg: '~~~~(>_<)~~~~， 请求到数据失败!',
-      newsUrl: 'https://route.showapi.com/109-35?showapi_appid=34477&showapi_sign=cfa5957a730f43d38886bd16469b2a86&channelId=5572a108b3cdc86cf39001cd&needContent=0&needHtml=1&page=',
-      page: 1
+      page: 1,
+      newsUrl: 'https://route.showapi.com/109-35?showapi_appid=34477&showapi_sign=cfa5957a730f43d38886bd16469b2a86&channelId=5572a108b3cdc86cf39001cd&needContent=0&needHtml=1&page='
     }
   },
   created: function () {
@@ -86,24 +71,22 @@ export default {
     setNewSrc (url) {
       return url
     },
-    // fetch异步请求函数
+    // axios异步请求函数
     requestData (url) {
       let self = this
-      fetch(url)
-      .then(function (res) {
-        return res.status
-               ? Promise.resolve(res)
-               : new Error(Promise.reject(res))
+      self.$axios({
+        method: 'get',
+        url: url
       })
       .then(function (res) {
-        return res.json()
-      })
-      .then(function (res) {
-        let data = res.showapi_res_body.pagebean.contentlist
+        let data = res.data.showapi_res_body.pagebean.contentlist
         for (var i = 0; i < data.length; i++) {
           if (data[i].imageurls[0]) {
             self.newsDate.push(data[i])
           }
+        }
+        for (let i = 0; i < 4; i++) {
+          self.banners.push(self.newsDate[i].imageurls[0].url)
         }
         // 数据请求成功显示加载更多按钮
         self.loadBtn = true

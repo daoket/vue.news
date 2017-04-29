@@ -13,9 +13,11 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
+    "axios": "^0.16.1",
     "jquery": "^3.2.1",
     "vue": "^2.2.2",
     "vue-awesome-swiper": "^2.4.0",
+    "vue-lazyload": "^1.0.3",
     "vue-router": "^2.2.0"
   },
   "devDependencies": {
