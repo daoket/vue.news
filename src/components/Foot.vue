@@ -3,7 +3,7 @@
     <img src="../assets/head/logo.png"/>
     <div class="email">
       <p>联系我：wt_niu@163.com</p>
-      <p>东都花神独家出品</p>
+      <a href="https://github.com/daoket/vue.news"><p>Fork me on GitHub</p></a>
     </div>
   </footer>
 </template>
