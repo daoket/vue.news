@@ -80,17 +80,22 @@ export default {
       })
       .then(function (res) {
         let data = res.data.showapi_res_body.pagebean.contentlist
-        for (var i = 0; i < data.length; i++) {
-          if (data[i].imageurls[0]) {
-            self.newsDate.push(data[i])
+        if (data.length > 1) {
+          for (var i = 0; i < data.length; i++) {
+            if (data[i].imageurls[0]) {
+              self.newsDate.push(data[i])
+            }
           }
-        }
-        for (let i = 0; i < 4; i++) {
-          if (self.banners.length < 4) {
-            self.banners.push(self.newsDate[i].imageurls[0].url)
+          for (let i = 0; i < 4; i++) {
+            if (self.banners.length < 4) {
+              self.banners.push(self.newsDate[i].imageurls[0].url)
+            }
           }
+          // 数据请求成功显示加载更多按钮
+        } else {
+          alert('没有更多数据了')
+          return false
         }
-        // 数据请求成功显示加载更多按钮
         self.loadBtn = true
         self.loadAnimation = false
       })
