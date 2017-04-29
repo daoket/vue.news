@@ -14,10 +14,10 @@ export default {
     return {
       // 路由参数
       menus: [{
-        text: '精选',
+        text: '头条',
         path: '/select'
       }, {
-        text: '争鸣',
+        text: '话题',
         path: '/point'
       }, {
         text: '作者',

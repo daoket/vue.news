@@ -11,7 +11,7 @@ export default new Router({
   // 路由配置
   routes: [
     {
-      path: '/',
+      path: '/select',
       component: Select
     }, {
       path: '/select',

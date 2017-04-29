@@ -1,6 +1,6 @@
 <template>
   <header class="head">
-    <img v-for='img in imgs' :class="setClass(img.class)" :src="setSrc(img.src)"/>
+    <a href="javascript: void(0)"><img class="baijia" src="../assets/head/logo.png"/></a>
     <img class="searchBtn" @click='openSearch' src="../assets/head/icon-search.png"/>
     <div class="searchPage">
       <div class="header">
@@ -25,16 +25,6 @@ export default {
     return {
       imgs: []
     }
-  },
-  created () {
-    this.imgs = [{
-      class: 'baijia',
-      // 直接使用相对路径无法被webpack打包，必须加上require才行
-      src: require('../assets/head/logo-baijia.png')
-    }, {
-      class: 'baidu',
-      src: require('../assets/head/logo-baidu.png')
-    }]
   },
   methods: {
     setClass (classname) {
@@ -82,8 +72,8 @@ export default {
     top: 5px;
   }
   .baijia{
-    height: 40px;
-    top: 10px;
+    height: 20px;
+    top: 20px;
     left: 10px;
   }
   .baidu{

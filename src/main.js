@@ -9,7 +9,7 @@ import VueLazyload from 'vue-lazyload'
 
 Vue.use(VueLazyload, {
   preLoad: 1.3,
-// error: '../static/error.jpg',
+  error: '../static/error.jpg',
   loading: '../static/loading.gif',
   attempt: 1
 })

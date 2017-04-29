@@ -1,9 +1,9 @@
 <template>
   <footer class="foot">
-    <img src="../assets/head/logo-baijia.png"/>
+    <img src="../assets/head/logo.png"/>
     <div class="email">
-      <p>联系我们：Baijia@baidu.com</p>
-      <p>百度新闻独家出品</p>
+      <p>联系我：wt_niu@163.com</p>
+      <p>东都花神独家出品</p>
     </div>
   </footer>
 </template>
@@ -28,7 +28,7 @@ export default {
   justify-content: space-around;
   align-items: center;
   img{
-    height: 40px;
+    height: 20px;
     margin-left: 10%;
     padding-right: 5%;
     border-right: 1px solid #666;
