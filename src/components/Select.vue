@@ -7,7 +7,7 @@
           <img :src="setBannerSrc(img)"/>
         </swiper-slide>
         <!-- 这是轮播的小圆点 -->
-        <div class="swiper-pagination" slot="pagination"></div>
+        <div v-show='loadBtn' class="swiper-pagination" slot="pagination"></div>
       </swiper>
     </div>
     <!--加载动画-->
@@ -86,7 +86,9 @@ export default {
           }
         }
         for (let i = 0; i < 4; i++) {
-          self.banners.push(self.newsDate[i].imageurls[0].url)
+          if (self.banners.length < 4) {
+            self.banners.push(self.newsDate[i].imageurls[0].url)
+          }
         }
         // 数据请求成功显示加载更多按钮
         self.loadBtn = true

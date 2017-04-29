@@ -22,6 +22,9 @@ export default new Router({
     }, {
       path: '/author',
       component: Author
+    }, {
+      path: '/*',
+      component: Select
     }
   ]
 })
