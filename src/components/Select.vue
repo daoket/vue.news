@@ -61,6 +61,7 @@ export default {
   created: function () {
     this.requestData(this.newsUrl + this.page)
     console.log('叩首为梦 码梦为生！')
+    console.log(this)
   },
   methods: {
     // 设置轮播图
@@ -80,7 +81,7 @@ export default {
       })
       .then(function (res) {
         let data = res.data.showapi_res_body.pagebean.contentlist
-        if (data.length > 1) {
+        if (data.length > 2) {
           for (var i = 0; i < data.length; i++) {
             if (data[i].imageurls[0]) {
               self.newsDate.push(data[i])
@@ -93,6 +94,7 @@ export default {
           }
           // 数据请求成功显示加载更多按钮
         } else {
+          self.loadAnimation = false
           alert('没有更多数据了')
           return false
         }
