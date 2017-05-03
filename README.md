@@ -1,4 +1,4 @@
-<h2 align="center">Vue 新闻浏览</h2>
+<h1 align="center">Vue 新闻浏览</h1>
 <p align="center">
   <a href="https://github.com/daoket/vue.news"><img src="https://img.shields.io/travis/rust-lang/rust.svg" alt="Vue"></a>
   <a href="https://github.com/vuejs/vue-cli"><img src="https://img.shields.io/badge/vue--cli-v2.4.0-blue.svg" alt="vue-cli"></a>
