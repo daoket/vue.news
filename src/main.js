@@ -4,9 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
-import axios from 'axios'
-import VueLazyload from 'vue-lazyload'
+import axios from 'axios' // 处理http请求
+import store from './store'
+import VueLazyload from 'vue-lazyload' // 懒加载
 
+// 配置懒加载
 Vue.use(VueLazyload, {
   preLoad: 1.3,
   error: '../static/error.jpg',
@@ -22,6 +24,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })

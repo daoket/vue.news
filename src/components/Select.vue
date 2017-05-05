@@ -23,21 +23,29 @@
             </div>
           </a>
         </div>
-        <button class="loadMore" @click='loadMoreBtn' v-show='loadBtn'>点击加载更多</button>
+        <button class="loadMore" @click='loadMoreBtn' v-show='loadBtn'>{{loadBtnText}}</button>
       </div>
-      <div class="fail" v-else>~~~~(>_<)~~~~， 请求到数据失败!</div>
+      <div class="fail" v-else>{{failMessage}}</div>
     </section>
   </div>
 </template>
 
 <script>
-// import $ from 'jquery'
+// 导入轮播图组件
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
+// 导入vuex
+import { mapState } from 'vuex'
 export default {
   name: 'select',
   data () {
     return {
       banners: [],
+      newsDate: [],
+      loadBtn: false,
+      requestStatus: true,
+      loadAnimation: true,
+      page: 1,
+      newsUrl: 'https://route.showapi.com/109-35?showapi_appid=34477&showapi_sign=cfa5957a730f43d38886bd16469b2a86&channelId=5572a108b3cdc86cf39001cd&needContent=0&needHtml=1&page=',
       swiperOption: {
         pagination: '.swiper-pagination',
         slidesPerView: 'auto',
@@ -49,19 +57,18 @@ export default {
           this.page = swiper.realIndex + 1
           this.index = swiper.realIndex
         }
-      },
-      newsDate: [],
-      loadBtn: false,
-      requestStatus: true,
-      loadAnimation: true,
-      page: 1,
-      newsUrl: 'https://route.showapi.com/109-35?showapi_appid=34477&showapi_sign=cfa5957a730f43d38886bd16469b2a86&channelId=5572a108b3cdc86cf39001cd&needContent=0&needHtml=1&page='
+      }
     }
+  },
+  computed: {
+    ...mapState({
+      failMessage: state => state.SelectStore.failMessage,
+      loadBtnText: state => state.SelectStore.loadBtnText
+    })
   },
   created: function () {
     this.requestData(this.newsUrl + this.page)
     console.log('叩首为梦 码梦为生！')
-    console.log(this)
   },
   methods: {
     // 设置轮播图
