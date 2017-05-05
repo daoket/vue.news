@@ -1,4 +1,4 @@
-<h2 align="center">Vue 新闻浏览</h2>
+<h1 align="center">Vue 新闻浏览</h1>
 <p align="center">
   <a href="https://github.com/daoket/vue.news"><img src="https://img.shields.io/travis/rust-lang/rust.svg" alt="Vue"></a>
   <a href="https://github.com/vuejs/vue-cli"><img src="https://img.shields.io/badge/vue--cli-v2.4.0-blue.svg" alt="vue-cli"></a>
@@ -6,6 +6,8 @@
   <a href="https://github.com/vuejs/vue-router"><img src="https://img.shields.io/badge/vue--router-v2.2.0-blue.svg" alt="vue-router"></a>
   <a href="https://github.com/vuejs/vuex"><img src="https://img.shields.io/badge/vuex-v2.0.0-blue.svg" alt="vuex"></a>
   <a href="https://github.com/surmon-china/vue-awesome-swiper"><img src="https://img.shields.io/badge/vue--awesome--swiper-v2.4.0-blue.svg" alt="vue-awesome-swiper"></a>
+  <br>
+  <a href="https://saucelabs.com/u/vuejs"><img src="https://saucelabs.com/browser-matrix/vuejs.svg" alt="Sauce Test Status"></a>
 </p>
 <p align="center">查看Demo:<a href="https://daoket.github.io/news/index.html#/select">https://daoket.github.io/news/index.html#/select</a>,在手机上效果更好，扫一扫体验</p>
 <p align="center"><a href="https://daoket.github.io/news/index.html#/select"><img src="https://daoket.github.io/news/address.png" alt="vue-music"></a></p>
@@ -47,3 +49,9 @@ npm run build
 <center>
 <img src="https://daoket.github.io/news/eg2.jpg" width='375' height='667'/>
 </center>
+
+## License
+
+[MIT](http://opensource.org/licenses/MIT)
+
+Copyright (c) 2017-present, daoket
