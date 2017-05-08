@@ -5,11 +5,19 @@
     <div class="searchPage">
       <div class="header">
         <div class="search">
+          <input type="text" />
           <img src="../assets/head/icon-search.png"/>
         </div>
         <div class="close" @click='closeSearch'>
           <div v-for='i in 2' class="closeLine"></div>
         </div>
+      </div>
+      <div class="content">
+        <p class="today">今天</p>
+        <ul class="news" v-for='(title, index) in newsTitle'>
+        	<li v-if='+index < 3'><i class="isTop3"> {{index + 1}} </i><span> {{title}}</span></li>
+        	<li v-else><i> {{index + 1}} </i><span> {{title}}</span></li>
+        </ul>
       </div>
     </div>
     <div class="aside" @click='toggleMenu'>
@@ -19,12 +27,23 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'head',
   data () {
     return {
-      imgs: []
+      imgs: [],
+      newsTitle: []
     }
+  },
+  computed: {
+    ...mapState({
+      page: state => state.SelectStore.page,
+      newsUrl: state => state.SelectStore.newsUrl
+    })
+  },
+  created () {
+    this.requestData(this.newsUrl + this.page)
   },
   methods: {
     setClass (classname) {
@@ -56,6 +75,26 @@ export default {
     closeSearch () {
       var searchPage = document.querySelector('.head .searchPage')
       searchPage.style.display = 'none'
+    },
+    requestData (url) { // axios异步请求函数
+      let self = this
+      self.$axios({
+        method: 'get',
+        url: url
+      })
+      .then(function (res) {
+        let data = res.data.showapi_res_body.pagebean.contentlist
+        if (data.length > 2) {
+          for (let i in data) {
+            self.newsTitle.push(data[i].title)
+          }
+          // 数据请求成功显示加载更多按钮
+        } else {
+          self.loadAnimation = false
+          alert('没有更多数据了')
+          return false
+        }
+      })
     }
   }
 }
@@ -70,6 +109,8 @@ export default {
     height: 50px;
     position: absolute;
     top: 5px;
+    right: 20%;
+    cursor: pointer;
   }
   .baijia{
     height: 20px;
@@ -122,6 +163,7 @@ export default {
     position: fixed;
     height: 100%;
     width: 100%;
+    overflow: scroll;
     background: #fff;
     z-index: 999;
     .header{
@@ -136,14 +178,22 @@ export default {
         width: 82%;
         border: 1px solid #eee;
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
         align-items: center;
+        input{
+          height: 40px;
+          width: 82%;
+          color: #FFFFFF;
+          text-indent: 10px;
+          background-color: #262627;
+          outline: none;
+        }
       }
       .close{
         height: 40px;
-        width: 12%;
+        width: 50px;
         margin-left: 2%;
-        padding-top: 34px;
+        padding-top: 35px;
         .closeLine{
           height: 1px;
           width: 70%;
@@ -157,6 +207,35 @@ export default {
           color: red;
           transform: rotate(-45deg);
         }
+      }
+    }
+  }
+  .content{
+    overflow: hidden;
+    background-color: #FFFFFF;
+    .today{
+      height: 25px;
+      background: #E3E4EE;
+      line-height: 25px;
+      text-indent: 15px;
+      font-size: 14px;
+    }
+    .news li{
+      font-size: 16px;
+      margin: 15px;
+      i{
+        font-size: 16px;
+        margin-right: 10px;
+      }
+      i.isTop3{
+        color: red;
+      }
+      span{
+        width: 90%;
+        display: inline-block;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
       }
     }
   }

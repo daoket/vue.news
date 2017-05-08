@@ -66,7 +66,8 @@ export default {
     border-right: 1px solid #eee;
   }
   .active{
-    border-bottom: 2px solid red;
+    border-bottom: 1px solid red;
+    box-sizing: border-box;
   }
 }
 </style>

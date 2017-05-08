@@ -5,7 +5,10 @@
           <h2>热点城市房价会否持续疯涨？</h2>
           <p>610期</p>
           <div class="result">
-            <div class="yes">
+            <p><span>正方</span><span>反方</span></p>
+            <progress value="75" max="100"></progress>
+            <p><span>75%</span><span>25%</span></p>
+            <!--<div class="yes">
               <span class="view">正方</span>
               <span class="num"></span>
               <span class="ratio">75%</span>
@@ -14,7 +17,7 @@
               <span>反方</span>
               <span class="num"></span>
               <span>25%</span>
-            </div>
+            </div>-->
           </div>
           <a class="join" href="javascript: void(0)">进入专题></a>
         </div>
@@ -72,39 +75,18 @@ export default {
       .result{
         height: 100px;
         width: 80%;
-        display: flex;
-        justify-content: space-between;
-        text-align: center;
-        .yes{
-          height: 50px;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-end;
-          align-items: flex-start;
-          width: 75%;
-          .num{
-            display: inline-block;
-            height: 5px;
-            width: 100%;
-            margin: 5px 0;
-            background: #E94C3D;
+          p{
+            display: flex;
+            justify-content: space-between;
           }
-        }
-        .no{
-          width: 25%;
-          height: 50px;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-end;
-          align-items: flex-end;
-          .num{
-            display: inline-block;
-            height: 5px;
+          progress {
             width: 100%;
-            margin: 5px 0;
-            background: #058;
+            background-color:#005588;
+            color: #E94C3D; /*IE10*/
           }
-        }
+          progress::-moz-progress-bar { background: #E94C3D; }
+          progress::-webkit-progress-bar { background: #005588; }
+          progress::-webkit-progress-value  { background: #E94C3D; }
       }
       .join{
         color: #E94C3D;

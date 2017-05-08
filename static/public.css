@@ -70,7 +70,7 @@ body {
 }
 
 /*滚动条*/
-::-webkit-scrollbar{
+/*::-webkit-scrollbar{
   -webkit-appearance: none;
 }
 ::-webkit-scrollbar:vertical {
@@ -82,4 +82,4 @@ body {
 ::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-}
+}*/
