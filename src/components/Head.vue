@@ -27,23 +27,18 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'head',
   data () {
     return {
-      imgs: [],
-      newsTitle: []
+      imgs: []
     }
   },
   computed: {
     ...mapState({
-      page: state => state.SelectStore.page,
-      newsUrl: state => state.SelectStore.newsUrl
+      newsTitle: state => state.SelectStore.newsTitle
     })
-  },
-  created () {
-    this.requestData(this.newsUrl + this.page)
   },
   methods: {
     setClass (classname) {
@@ -52,50 +47,9 @@ export default {
     setSrc (src) {
       return src
     },
-    toggleMenu () {
-      var page = document.querySelector('#app .page')
-      var aside = document.querySelector('.head .aside')
-      var pageClass = page.className
-      var asideClass = aside.className
-      if (pageClass === 'page') {
-        page.className = 'page toggle'
-      } else {
-        page.className = 'page'
-      }
-      if (asideClass === 'aside') {
-        aside.className = 'aside closeMenu'
-      } else {
-        aside.className = 'aside'
-      }
-    },
-    openSearch () {
-      var searchPage = document.querySelector('.head .searchPage')
-      searchPage.style.display = 'block'
-    },
-    closeSearch () {
-      var searchPage = document.querySelector('.head .searchPage')
-      searchPage.style.display = 'none'
-    },
-    requestData (url) { // axios异步请求函数
-      let self = this
-      self.$axios({
-        method: 'get',
-        url: url
-      })
-      .then(function (res) {
-        let data = res.data.showapi_res_body.pagebean.contentlist
-        if (data.length > 2) {
-          for (let i in data) {
-            self.newsTitle.push(data[i].title)
-          }
-          // 数据请求成功显示加载更多按钮
-        } else {
-          self.loadAnimation = false
-          alert('没有更多数据了')
-          return false
-        }
-      })
-    }
+    ...mapMutations([
+      'toggleMenu', 'openSearch', 'closeSearch'
+    ])
   }
 }
 </script>
