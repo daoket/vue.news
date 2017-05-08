@@ -23,9 +23,9 @@
             </div>
           </a>
         </div>
-        <button class="loadMore" @click='loadMoreBtn' v-show='loadBtn'>{{loadBtnText}}</button>
+        <button class="loadMore" @click='loadMoreBtn' v-show='loadBtn'>~~~~(>_<)~~~~， 请求到数据失败!</button>
       </div>
-      <div class="fail" v-else>{{failMessage}}</div>
+      <div class="fail" v-else>点击加载更多</div>
     </section>
   </div>
 </template>
@@ -39,8 +39,6 @@ export default {
   name: 'select',
   data () {
     return {
-      banners: [],
-      newsDate: [],
       loadBtn: false,
       requestStatus: true,
       loadAnimation: true,
@@ -60,10 +58,13 @@ export default {
   },
   computed: {
     ...mapState({
+      banners: state => state.SelectStore.banners,
+      newsDate: state => state.SelectStore.newsDate,
       page: state => state.SelectStore.page,
-      newsUrl: state => state.SelectStore.newsUrl,
-      failMessage: state => state.SelectStore.failMessage,
-      loadBtnText: state => state.SelectStore.loadBtnText
+      newsUrl: state => state.SelectStore.newsUrl
+//    loadBtn: state => state.SelectStore.loadBtn,
+//    requestStatus: state => state.SelectStore.requestStatus,
+//    loadAnimation: state => state.SelectStore.loadAnimation
     })
   },
   created: function () {
