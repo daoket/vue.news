@@ -23,9 +23,9 @@
             </div>
           </a>
         </div>
-        <button class="loadMore" @click='loadMoreBtn' v-show='loadBtn'>~~~~(>_<)~~~~， 请求到数据失败!</button>
+        <button class="loadMore" @click='loadMoreBtn' v-show='loadBtn'>点击加载更多</button>
       </div>
-      <div class="fail" v-else>点击加载更多</div>
+      <div class="fail" v-else>~~~~(>_<)~~~~， 请求到数据失败!</div>
     </section>
   </div>
 </template>
@@ -34,14 +34,12 @@
 // 导入轮播图组件
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 // 导入vuex
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'select',
   data () {
     return {
-      loadBtn: false,
       requestStatus: true,
-      loadAnimation: true,
       swiperOption: {
         pagination: '.swiper-pagination',
         slidesPerView: 'auto',
@@ -58,63 +56,32 @@ export default {
   },
   computed: {
     ...mapState({
+      page: state => state.SelectStore.page,
+      newsUrl: state => state.SelectStore.newsUrl,
       banners: state => state.SelectStore.banners,
       newsDate: state => state.SelectStore.newsDate,
-      page: state => state.SelectStore.page,
-      newsUrl: state => state.SelectStore.newsUrl
-//    loadBtn: state => state.SelectStore.loadBtn,
-//    requestStatus: state => state.SelectStore.requestStatus,
-//    loadAnimation: state => state.SelectStore.loadAnimation
+      loadBtn: state => state.SelectStore.loadBtn,
+      loadAnimation: state => state.SelectStore.loadAnimation
     })
   },
   created: function () {
-    this.requestData(this.newsUrl + this.page)
+    this.askNews(this.newsUrl + this.page)
     console.log('叩首为梦 码梦为生！')
   },
   methods: {
-    // 设置轮播图
-    setBannerSrc (src) {
+    ...mapActions([
+      'askNews'
+    ]),
+    setBannerSrc (src) {  // 设置轮播图
       return src
     },
-    // 设置新闻图片
-    setNewSrc (url) {
+    setNewSrc (url) {  // 设置新闻图片
       return url
     },
-    // axios异步请求函数
-    requestData (url) {
-      let self = this
-      self.$axios({
-        method: 'get',
-        url: url
-      })
-      .then(function (res) {
-        let data = res.data.showapi_res_body.pagebean.contentlist
-        if (data.length > 2) {
-          for (var i = 0; i < data.length; i++) {
-            if (data[i].imageurls[0]) {
-              self.newsDate.push(data[i])
-            }
-          }
-          for (let i = 0; i < 4; i++) {
-            if (self.banners.length < 4) {
-              self.banners.push(self.newsDate[i].imageurls[0].url)
-            }
-          }
-          // 数据请求成功显示加载更多按钮
-        } else {
-          self.loadAnimation = false
-          alert('没有更多数据了')
-          return false
-        }
-        self.loadBtn = true
-        self.loadAnimation = false
-      })
-    },
-    loadMoreBtn () {
-      let self = this
-      self.page++
-      self.loadAnimation = true
-      self.requestData(self.newsUrl + self.page)
+    loadMoreBtn () { // 加载更多
+      this.page++
+      this.loadAnimation = true
+      this.askNews(this.newsUrl + this.page)
     }
   },
   components: {
