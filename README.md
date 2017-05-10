@@ -13,7 +13,7 @@
 <p align="center">在手机上效果更好，扫一扫体验</p>
 
 ### 简介
-* 本项目使用最新版vue2构建，项目中使用到了vue-router作为路由，vuex进行状态管理，另外还是引入了几个常用的vue插件，比如使用vue-axios处理http请求，使用vue-awesome-weiper处理首页轮播，使用vue-lazyload进行懒加载，项目中使用到了vue的大部分知识点，欢迎各种star。
+* 本项目使用最新版vue2进行构建，项目中使用vue-router控制路由，vuex进行状态管理，另外还是引入了几个常用的vue插件，比如使用vue-axios处理http请求，使用vue-awesome-weiper处理首页轮播，使用vue-lazyload进行懒加载，项目中使用到了vue的大部分知识点，欢迎各种star。
 ### 实现的功能
 1. 首页轮播图
 2. 新闻懒加载、点击加载更多
