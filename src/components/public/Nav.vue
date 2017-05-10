@@ -14,7 +14,7 @@ export default {
     return {
       // 路由参数
       menus: [{
-        text: '头条',
+        text: '精选',
         path: '/select'
       }, {
         text: '话题',

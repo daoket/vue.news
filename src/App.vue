@@ -13,10 +13,10 @@
 </template>
 
 <script>
-import AppHead from '@/components/Head'
-import AppMenu from '@/components/Menu'
-import AppNav from '@/components/Nav'
-import AppFoot from '@/components/Foot'
+import AppHead from '@/components/public/Head'
+import AppMenu from '@/components/public/Menu'
+import AppNav from '@/components/public/Nav'
+import AppFoot from '@/components/public/Foot'
 export default {
   name: 'app',
   components: {

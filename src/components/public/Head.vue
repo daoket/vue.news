@@ -1,25 +1,28 @@
 <template>
   <header class="head">
-    <a href="javascript: void(0)"><img class="baijia" src="../assets/head/logo.png"/></a>
-    <img class="searchBtn" @click='openSearch' src="../assets/head/icon-search.png"/>
+    <a href="javascript: void(0)"><img class="baijia" src="../../assets/head/logo.png"/></a>
+    <svg class="icon searchBtn" @click='openSearch' aria-hidden="true">
+      <use xlink:href="#icon-sousuo"></use>
+    </svg>
     <div class="searchPage">
       <div class="header">
         <div class="search">
           <input v-model='searchContent' type="text" />
-          <!--<img src="../assets/head/icon-search.png"/>-->
-          <img @click='searchNews' src="../assets/head/icon-search.png"/>
+          <svg class="icon" @click='searchNewsBtn' aria-hidden="true">
+            <use xlink:href="#icon-sousuo"></use>
+          </svg>
         </div>
-        <div class="close" @click='closeSearch'>
-          <div v-for='i in 2' class="closeLine"></div>
-        </div>
+        <svg class="icon close" @click='closeSearch' aria-hidden="true">
+          <use xlink:href="#icon-hao"></use>
+        </svg>
       </div>
       <div class="content">
         <p class="today">今天</p>
         <ul class="news">
-          <li v-for='(news, index) in searchNews'>
+          <li ref='newsItem' v-for='(news, index) in searchNews'>
             <a :href="'#' + news.id" @click='goNews'>
-              <p v-if='+index < 3'><i class="isTop3"> {{index + 1}} </i><span class="title"> {{news.title}}</span></p>
-              <p v-else><i> {{index + 1}} </i><span class="title"> {{news.title}}</span></p>
+              <p v-if='+index < 3'><i class="isTop3"> {{index + 1}} </i><span ref='title' class="title"> {{news.title}}</span></p>
+              <p v-else><i> {{index + 1}} </i><span ref='title' class="title"> {{news.title}}</span></p>
             </a>
           </li>
         </ul>
@@ -32,7 +35,6 @@
 </template>
 
 <script>
-import $ from 'jquery'
 import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'head',
@@ -50,19 +52,19 @@ export default {
   watch: {
     searchContent (curVal, oldVal) {
       if (curVal === '') {
-        $('.searchPage li').show()
-        $('.searchPage .title').removeClass('hightColor')
+        this.$refs.newsItem.map((item) => {
+          item.style.display = 'block'
+          item.className = ''
+        })
       }
-      let len = $('.searchPage .title').length
       if (curVal !== '') {
-        for (let i = 0; i < len; i++) {
-          var title = $('.searchPage .title')[i]
-          if ($(title).html().match(curVal)) {
-            $(title).addClass('hightColor')
+        this.$refs.title.map((item) => {
+          if (item.innerText.match(curVal)) {
+            item.parentNode.parentNode.parentNode.className = 'hightColor'
           } else {
-            $(title).parents('li').hide()
+            item.parentNode.parentNode.parentNode.style.display = 'none'
           }
-        }
+        })
       }
     }
   },
@@ -73,22 +75,15 @@ export default {
     setSrc (src) {
       return src
     },
-    searchNews () {
-      let str = this.searchContent
-      let len = $('.searchPage .title').length
-      if (str !== '') {
-        for (let i = 0; i < len; i++) {
-          var title = $('.searchPage .title')[i]
-          if ($(title).html().match(str)) {
-            $(title).addClass('hightColor')
-          } else {
-            $(title).parents('li').hide()
-          }
-        }
-      }
+    searchNewsBtn () {
+      alert('搜索完成')
     },
     goNews () {
       this.closeSearch()
+      this.clearSearchContent()
+    },
+    clearSearchContent () {
+      this.searchContent = ''
     },
     ...mapMutations([
       'toggleMenu', 'openSearch', 'closeSearch'
@@ -118,8 +113,11 @@ export default {
     right: 30%;
   }
   .searchBtn{
-    right: 15%;
     cursor: pointer;
+    color: #FFFFFF;
+    position: absolute;
+    top: 18px;
+    right: 15%;
   }
   .aside{
     height: 60px;
@@ -172,7 +170,7 @@ export default {
       background: #262627;
       .search{
         height: 40px;
-        width: 82%;
+        width: 85%;
         border: 1px solid #eee;
         display: flex;
         justify-content: space-between;
@@ -185,30 +183,15 @@ export default {
           background-color: #262627;
           outline: none;
         }
-        .clear{
+        .icon{
           color: #FFFFFF;
-          position: absolute;
-          right: 35%;
+          margin-right: 5%;
         }
       }
       .close{
-        height: 40px;
-        width: 50px;
-        margin-left: 2%;
-        padding-top: 35px;
-        .closeLine{
-          height: 1px;
-          width: 70%;
-          background: #fff;
-        }
-        .closeLine:first-child{
-          color: red;
-          transform: rotate(45deg);
-        }
-        .closeLine:last-child{
-          color: red;
-          transform: rotate(-45deg);
-        }
+        height: 30px;
+        width: 30px;
+        color: #FFFFFF;
       }
     }
   }

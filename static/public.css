@@ -69,17 +69,10 @@ body {
   background-color: #ffffff;
 }
 
-/*滚动条*/
-/*::-webkit-scrollbar{
-  -webkit-appearance: none;
+.icon {
+  width: 25px;
+  height: 25px;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
 }
-::-webkit-scrollbar:vertical {
-  width: 10px;
-}
-::-webkit-scrollbar:horizontal {
-  height: 0;
-}
-::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-}*/

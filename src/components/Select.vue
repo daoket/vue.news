@@ -12,6 +12,9 @@
     </div>
     <!--加载动画-->
     <div class="spinner" v-show='loadAnimation'></div>
+    <svg v-show='rocket' class="icon goTop" @click='goPageTop' aria-hidden="true">
+      <use xlink:href="#icon-0028"></use>
+    </svg>
     <section class="news">
       <div v-if='requestStatus'>
         <div v-for='news in newsDate' :id="news.id">
@@ -39,6 +42,7 @@ export default {
   name: 'select',
   data () {
     return {
+      rocket: false,
       requestStatus: true,
       swiperOption: {
         pagination: '.swiper-pagination',
@@ -66,6 +70,15 @@ export default {
   },
   created: function () {
     this.askNews(this.newsUrl + this.page)
+    let _this = this
+    window.onscroll = function () {
+      let leaveTop = document.body.scrollTop
+      if (leaveTop > 600) {
+        _this.rocket = true
+      } else {
+        _this.rocket = false
+      }
+    }
     console.log('叩首为梦 码梦为生！')
   },
   methods: {
@@ -84,6 +97,9 @@ export default {
     loadMoreBtn () { // 加载更多
       this.loadMore()
       this.askNews(this.newsUrl + this.page)
+    },
+    goPageTop () {
+      document.body.scrollTop = 0
     }
   },
   components: {
@@ -195,5 +211,21 @@ export default {
     -webkit-transform: scale(1.0);
     opacity: 0;
   }
+}
+.goTop{
+  color: #50BFFF;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  transition: all 1s;
+  transform: scale(0.5);
+}
+.goTop:active{
+  color: #C40000;
+  transform: scale(1);
 }
 </style>

@@ -51,7 +51,6 @@ export default {
         for (let i in data) {
           state.searchNews.push({title: data[i].title, id: data[i].id})
         }
-        console.log(state.searchNews)
         commit('loadNews')
       })
     }
