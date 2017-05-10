@@ -5,7 +5,7 @@ export default {
     data: [],
     newsDate: [],
     banners: [],
-    newsTitle: [],
+    searchNews: [],
     loadBtn: false,
     loadAnimation: true,
     newsUrl: 'https://route.showapi.com/109-35?showapi_appid=34477&showapi_sign=cfa5957a730f43d38886bd16469b2a86&channelId=5572a108b3cdc86cf39001cd&needContent=0&needHtml=1&page='
@@ -33,7 +33,8 @@ export default {
       state.loadBtn = true
       state.loadAnimation = false
     },
-    showLoadAnimation (state) {
+    loadMore (state) {
+      state.page++
       state.loadAnimation = true
     }
   },
@@ -48,8 +49,9 @@ export default {
         let data = res.data.showapi_res_body.pagebean.contentlist
         state.data = data
         for (let i in data) {
-          state.newsTitle.push(data[i].title)
+          state.searchNews.push({title: data[i].title, id: data[i].id})
         }
+        console.log(state.searchNews)
         commit('loadNews')
       })
     }

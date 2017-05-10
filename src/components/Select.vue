@@ -73,7 +73,7 @@ export default {
       'askNews', 'setSrc'
     ]),
     ...mapMutations([
-      'showLoadAnimation'
+      'loadMore'
     ]),
     setBannerSrc (src) {  // 设置轮播图
       return src
@@ -82,8 +82,7 @@ export default {
       return url
     },
     loadMoreBtn () { // 加载更多
-      this.page++
-      this.showLoadAnimation()
+      this.loadMore()
       this.askNews(this.newsUrl + this.page)
     }
   },

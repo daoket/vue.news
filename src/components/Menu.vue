@@ -2,13 +2,13 @@
   <section class="menu">
     <p class="user" title="">{{userName}}</p>
     <ul class="aside">
-    	<li v-for='m in menus'><a @click='toggleMenu' href="#">{{m.text}}</a></li>
+    	<li v-for='m in menus'><a href="">{{m.text}}</a></li>
     </ul>
   </section>
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState } from 'vuex'
 export default {
   name: 'menu',
   computed: {
@@ -16,11 +16,6 @@ export default {
       userName: state => state.MenuStore.userName,
       menus: state => state.MenuStore.menus
     })
-  },
-  methods: {
-    ...mapMutations([
-      'toggleMenu'
-    ])
   }
 }
 </script>

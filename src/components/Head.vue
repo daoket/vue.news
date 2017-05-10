@@ -6,6 +6,7 @@
       <div class="header">
         <div class="search">
           <input v-model='searchContent' type="text" />
+          <!--<img src="../assets/head/icon-search.png"/>-->
           <img @click='searchNews' src="../assets/head/icon-search.png"/>
         </div>
         <div class="close" @click='closeSearch'>
@@ -15,10 +16,10 @@
       <div class="content">
         <p class="today">今天</p>
         <ul class="news">
-          <li v-for='(title, index) in newsTitle'>
-            <a href="">
-              <p v-if='+index < 3'><i class="isTop3"> {{index + 1}} </i><span class="title"> {{title}}</span></p>
-              <p v-else><i> {{index + 1}} </i><span class="title"> {{title}}</span></p>
+          <li v-for='(news, index) in searchNews'>
+            <a :href="'#' + news.id" @click='goNews'>
+              <p v-if='+index < 3'><i class="isTop3"> {{index + 1}} </i><span class="title"> {{news.title}}</span></p>
+              <p v-else><i> {{index + 1}} </i><span class="title"> {{news.title}}</span></p>
             </a>
           </li>
         </ul>
@@ -43,7 +44,7 @@ export default {
   },
   computed: {
     ...mapState({
-      newsTitle: state => state.SelectStore.newsTitle
+      searchNews: state => state.SelectStore.searchNews
     })
   },
   watch: {
@@ -85,6 +86,9 @@ export default {
           }
         }
       }
+    },
+    goNews () {
+      this.closeSearch()
     },
     ...mapMutations([
       'toggleMenu', 'openSearch', 'closeSearch'
