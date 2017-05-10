@@ -233,7 +233,7 @@ export default {
   }
   .hightColor{
     color: #FFFFFF;
-    background-color: orange;
+    background-color: #EEEEEE;
   }
 }
 </style>

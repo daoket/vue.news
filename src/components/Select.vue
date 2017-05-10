@@ -215,7 +215,7 @@ export default {
 .goTop{
   color: #50BFFF;
   position: fixed;
-  bottom: 30px;
+  bottom: 60px;
   right: 30px;
   z-index: 9999;
   cursor: pointer;
