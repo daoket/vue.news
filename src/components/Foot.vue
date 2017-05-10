@@ -8,17 +8,6 @@
   </footer>
 </template>
 
-<script>
-export default {
-  name: 'foot',
-  data () {
-    return {
-      imgs: []
-    }
-  }
-}
-</script>
-
 <style lang="stylus">
 .foot{
   height: 100px;

@@ -32,6 +32,9 @@ export default {
       }
       state.loadBtn = true
       state.loadAnimation = false
+    },
+    showLoadAnimation (state) {
+      state.loadAnimation = true
     }
   },
   actions: {

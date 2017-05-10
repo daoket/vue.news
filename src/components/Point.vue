@@ -8,16 +8,6 @@
             <p><span>正方</span><span>反方</span></p>
             <progress value="75" max="100"></progress>
             <p><span>75%</span><span>25%</span></p>
-            <!--<div class="yes">
-              <span class="view">正方</span>
-              <span class="num"></span>
-              <span class="ratio">75%</span>
-            </div>
-            <div class="no">
-              <span>反方</span>
-              <span class="num"></span>
-              <span>25%</span>
-            </div>-->
           </div>
           <a class="join" href="javascript: void(0)">进入专题></a>
         </div>

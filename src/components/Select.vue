@@ -34,7 +34,7 @@
 // 导入轮播图组件
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 // 导入vuex
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
   name: 'select',
   data () {
@@ -70,7 +70,10 @@ export default {
   },
   methods: {
     ...mapActions([
-      'askNews'
+      'askNews', 'setSrc'
+    ]),
+    ...mapMutations([
+      'showLoadAnimation'
     ]),
     setBannerSrc (src) {  // 设置轮播图
       return src
@@ -80,7 +83,7 @@ export default {
     },
     loadMoreBtn () { // 加载更多
       this.page++
-      this.loadAnimation = true
+      this.showLoadAnimation()
       this.askNews(this.newsUrl + this.page)
     }
   },

@@ -5,8 +5,8 @@
     <div class="searchPage">
       <div class="header">
         <div class="search">
-          <input type="text" />
-          <img src="../assets/head/icon-search.png"/>
+          <input v-model='searchContent' type="text" />
+          <img @click='searchNews' src="../assets/head/icon-search.png"/>
         </div>
         <div class="close" @click='closeSearch'>
           <div v-for='i in 2' class="closeLine"></div>
@@ -14,9 +14,11 @@
       </div>
       <div class="content">
         <p class="today">今天</p>
-        <ul class="news" v-for='(title, index) in newsTitle'>
-        	<li v-if='+index < 3'><i class="isTop3"> {{index + 1}} </i><span> {{title}}</span></li>
-        	<li v-else><i> {{index + 1}} </i><span> {{title}}</span></li>
+        <ul class="news">
+          <li v-for='(title, index) in newsTitle'>
+            <p v-if='+index < 3'><i class="isTop3"> {{index + 1}} </i><span class="title"> {{title}}</span></p>
+            <p v-else><i> {{index + 1}} </i><span class="title"> {{title}}</span></p>
+          </li>
         </ul>
       </div>
     </div>
@@ -27,12 +29,14 @@
 </template>
 
 <script>
+import $ from 'jquery'
 import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'head',
   data () {
     return {
-      imgs: []
+      imgs: [],
+      searchContent: ''
     }
   },
   computed: {
@@ -40,12 +44,45 @@ export default {
       newsTitle: state => state.SelectStore.newsTitle
     })
   },
+  watch: {
+    searchContent (curVal, oldVal) {
+      if (curVal === '') {
+        $('.searchPage li').show()
+        $('.searchPage .title').removeClass('hightColor')
+      }
+      let len = $('.searchPage .title').length
+      if (curVal !== '') {
+        for (let i = 0; i < len; i++) {
+          var title = $('.searchPage .title')[i]
+          if ($(title).html().match(curVal)) {
+            $(title).addClass('hightColor')
+          } else {
+            $(title).parents('li').hide()
+          }
+        }
+      }
+    }
+  },
   methods: {
     setClass (classname) {
       return classname
     },
     setSrc (src) {
       return src
+    },
+    searchNews () {
+      let str = this.searchContent
+      let len = $('.searchPage .title').length
+      if (str !== '') {
+        for (let i = 0; i < len; i++) {
+          var title = $('.searchPage .title')[i]
+          if ($(title).html().match(str)) {
+            $(title).addClass('hightColor')
+          } else {
+            $(title).parents('li').hide()
+          }
+        }
+      }
     },
     ...mapMutations([
       'toggleMenu', 'openSearch', 'closeSearch'
@@ -142,6 +179,11 @@ export default {
           background-color: #262627;
           outline: none;
         }
+        .clear{
+          color: #FFFFFF;
+          position: absolute;
+          right: 35%;
+        }
       }
       .close{
         height: 40px;
@@ -177,8 +219,15 @@ export default {
     .news li{
       font-size: 16px;
       margin: 15px;
+      p{
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
       i{
         font-size: 16px;
+        font-style: normal;
         margin-right: 10px;
       }
       i.isTop3{
@@ -192,6 +241,10 @@ export default {
         white-space: nowrap;
       }
     }
+  }
+  .hightColor{
+    color: #FFFFFF;
+    background-color: orange;
   }
 }
 </style>
