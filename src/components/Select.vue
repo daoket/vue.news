@@ -14,7 +14,7 @@
     <div class="spinner" v-show='loadAnimation'></div>
     <section class="news">
       <div v-if='requestStatus'>
-        <div v-for='news in newsDate'>
+        <div v-for='news in newsDate' :id="news.id">
           <a href="javascript: void(0)" class="new" :key='news.channelId'>
             <img v-lazy='news.imageurls[0].url' :src="setNewSrc(news.imageurls[0].url)"/>
             <div class="intro">

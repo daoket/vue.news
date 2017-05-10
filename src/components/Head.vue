@@ -16,8 +16,10 @@
         <p class="today">今天</p>
         <ul class="news">
           <li v-for='(title, index) in newsTitle'>
-            <p v-if='+index < 3'><i class="isTop3"> {{index + 1}} </i><span class="title"> {{title}}</span></p>
-            <p v-else><i> {{index + 1}} </i><span class="title"> {{title}}</span></p>
+            <a href="">
+              <p v-if='+index < 3'><i class="isTop3"> {{index + 1}} </i><span class="title"> {{title}}</span></p>
+              <p v-else><i> {{index + 1}} </i><span class="title"> {{title}}</span></p>
+            </a>
           </li>
         </ul>
       </div>
