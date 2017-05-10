@@ -12,19 +12,20 @@
 <p align="center"><a href="https://daoket.github.io/news/index.html#/select"><img src="https://daoket.github.io/news/address.png" alt="vue-music"></a></p>
 <p align="center">在手机上效果更好，扫一扫体验</p>
 
-
+### 简介
+* 本项目使用最新版vue2构建，项目中使用到了vue-router作为路由，vuex进行状态管理，另外还是引入了几个常用的vue插件，比如使用vue-axios处理http请求，使用vue-awesome-weiper处理首页轮播，使用vue-lazyload进行懒加载，项目中使用到了vue的大部分知识点，欢迎各种star。
 ### 实现的功能
 1. 首页轮播图
-2. 新闻实时请求、点击加载更多
+2. 新闻懒加载、点击加载更多
 3. 请求新闻时加载动画
 4. 菜单栏的显示和隐藏
-5. 搜索界面
+5. 新闻搜索
 6. vuex管理数据
 
 ### 未实现的功能
-* 搜索
+* 投票
 
-## Build Setup
+## 安装步骤
 
 ``` bash
 # 下载或克隆下来，然后安装依赖
@@ -37,7 +38,7 @@ npm run dev
 npm run build
 ```
 
-## 关键目录介绍
+## 目录介绍
 ```
 src： 项目代码
    assets: 项目中静态文件，如图片
@@ -47,7 +48,7 @@ src： 项目代码
    main.js： 入口文件
 ```
 
-# 截图
+# 项目截图
 
 
 ### 首页
