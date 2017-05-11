@@ -29,6 +29,9 @@ export default {
 </script>
 
 <style>
+#app{
+  overflow: hidden;
+}
 .page{
   position: relative;
   z-index: 99;

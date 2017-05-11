@@ -186,6 +186,7 @@ export default {
         .icon{
           color: #FFFFFF;
           margin-right: 5%;
+          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         }
       }
       .close{
