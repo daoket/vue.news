@@ -13,7 +13,7 @@ export default {
   mutations: {
     loadNews (state) {
       let data = state.data
-      if (data.length > 2) {
+      if (data.length > 2) { // 判断数据是否存在
         for (var i = 0; i < data.length; i++) {
           if (data[i].imageurls[0]) {
             state.newsDate.push(data[i])
@@ -24,12 +24,12 @@ export default {
             state.banners.push(state.newsDate[i].imageurls[0].url)
           }
         }
-        // 数据请求成功显示加载更多按钮
       } else {
         state.loadAnimation = false
         console.log('没有更多数据了')
         return false
       }
+      // 数据请求成功显示加载更多按钮
       state.loadBtn = true
       state.loadAnimation = false
     },
