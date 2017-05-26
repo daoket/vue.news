@@ -46,6 +46,14 @@ export default {
     setOtherSrc (src) {
       return src
     }
+  },
+  beforeRouteEnter (to, from, next) {
+    console.log(6)
+    next()
+  },
+  beforeRouteLeave (to, from, next) {
+    console.log(9)
+    next()
   }
 }
 </script>
