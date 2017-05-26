@@ -53,11 +53,11 @@ export default {
     },
     fetchData (to, from) {
 //    location.hash = 'select'
-      console.log('route change')
+//    console.log(this.$route)
     },
     goHome () {
-      this.$router.push('/select')
-//    this.$router.replace('/select')
+//    this.$router.push('/select') // 跳转到指定页面,有历史记录 如：首页
+      this.$router.replace('/select') // 跳转到指定页面， 没有有历史记录 如：首页
 //    this.$route.go({path: '/select'})
 //    this.$route.redirect({
 //      '/': '/select'

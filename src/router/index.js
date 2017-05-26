@@ -23,13 +23,11 @@ const router = new Router({
       component: Point
     }, {
       path: '/author',
-      component: Author
+      component: Author,
+      meta: { requiresAuth: true }
     }, {
       path: '/*',
       component: Select
-    }, {
-      path: '/',
-      redirect: '/select'
     }
   ]
 })
