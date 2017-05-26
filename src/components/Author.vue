@@ -1,5 +1,7 @@
 <template>
   <section class="author">
+    <button class="goHome" @click='goHome'>Home</button>
+    <!--<a v-link="select">select</a>-->
     <div class="banner">
       <div v-for='a in author' class="item">
         <div class="msg">
@@ -39,20 +41,40 @@ export default {
       other: state => state.AuthorStore.other
     })
   },
+  watch: {
+    '$route': 'fetchData'
+  },
   methods: {
     setAutherSrc (src) {
       return src
     },
     setOtherSrc (src) {
       return src
+    },
+    fetchData (to, from) {
+//    location.hash = 'select'
+      console.log('route change')
+    },
+    goHome () {
+      this.$router.push('/select')
+//    this.$router.replace('/select')
+//    this.$route.go({path: '/select'})
+//    this.$route.redirect({
+//      '/': '/select'
+//    })
+      console.log(0)
     }
   },
   beforeRouteEnter (to, from, next) {
-    console.log(6)
+//  console.log(3)
+    next()
+  },
+  beforeRouteUpdate (to, from, next) {
+    console.log(9)
     next()
   },
   beforeRouteLeave (to, from, next) {
-    console.log(9)
+//  this.$router.push('/select')
     next()
   }
 }
@@ -161,7 +183,17 @@ export default {
         background: #262627;
       }
     }
-    
+  }
+  .goHome{
+    position: fixed;
+    right: 15px;
+    bottom: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    outline: none;
+    color: #FFFFFF;
+    background: rgba(0,0,0,0.5);
   }
 }
 </style>

@@ -2,7 +2,7 @@
   <section class="menu">
     <p class="user" title="">{{userName}}</p>
     <ul class="aside">
-    	<li v-for='m in menus'><a href="goHome">{{m.text}}</a></li>
+    	<li v-for='m in menus'><a href="">{{m.text}}</a></li>
     </ul>
   </section>
 </template>

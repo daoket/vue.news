@@ -6,8 +6,10 @@ import Author from '@/components/Author'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   linkActiveClass: 'active',
+  hashbang: true, // 将路径格式化为#!开头
+  history: true, // 启用HTML5 history模式，可以使用pushState和replaceState来管理记录
   // 路由配置
   routes: [
     {
@@ -25,6 +27,11 @@ export default new Router({
     }, {
       path: '/*',
       component: Select
+    }, {
+      path: '/',
+      redirect: '/select'
     }
   ]
 })
+
+export default router
