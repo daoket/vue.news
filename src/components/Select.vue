@@ -65,6 +65,7 @@ export default {
       banners: state => state.SelectStore.banners,
       newsDate: state => state.SelectStore.newsDate,
       loadBtn: state => state.SelectStore.loadBtn,
+      pathName: state => state.SelectStore.pathName,
       loadAnimation: state => state.SelectStore.loadAnimation
     })
   },
@@ -79,6 +80,9 @@ export default {
         _this.rocket = false
       }
     }
+    var newPathName = location.pathname
+    this.pathname = newPathName
+    this.updatePathName(newPathName)
     console.log('叩首为梦 码梦为生！')
   },
   methods: {
@@ -86,7 +90,7 @@ export default {
       'askNews', 'setSrc'
     ]),
     ...mapMutations([
-      'loadMore'
+      'loadMore', 'updatePathName'
     ]),
     setBannerSrc (src) {  // 设置轮播图
       return src

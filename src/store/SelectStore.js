@@ -7,6 +7,7 @@ export default {
     banners: [],
     searchNews: [],
     loadBtn: false,
+    pathName: '',
     loadAnimation: true,
     newsUrl: 'https://route.showapi.com/109-35?showapi_appid=34477&showapi_sign=cfa5957a730f43d38886bd16469b2a86&channelId=5572a108b3cdc86cf39001cd&needContent=0&needHtml=1&page='
   },
@@ -36,6 +37,9 @@ export default {
     loadMore (state) {
       state.page++
       state.loadAnimation = true
+    },
+    updatePathName (state, newPathName) {
+      state.pathName = newPathName
     }
   },
   actions: {
