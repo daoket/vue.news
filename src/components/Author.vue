@@ -57,10 +57,12 @@ export default {
 //    console.log(this.$route)
     },
     goHome () {
-      console.log(parseFloat(-history.length))
-      this.$router.go(parseFloat(-history.length) + 1)
+      if (history.length) {
+        history.go(parseFloat(-history.length) + 1)
+      } else {
+        this.$router.go(parseFloat(-this.$store.state.historyLength) + 1)
+      }
 //    this.$router.go('/select')
-//    history.go(parseFloat(-history.length) + 1)
 //    this.$router.replace(this.pathName)
 //    this.$router.push('/select') // 跳转到指定页面,有历史记录 如：首页
 //    this.$router.replace('/select') // 跳转到指定页面， 没有有历史记录 如：首页

@@ -83,7 +83,7 @@ export default {
     var newPathName = location.pathname
     this.pathname = newPathName
     this.updatePathName(newPathName)
-    console.log('叩首为梦 码梦为生！')
+    console.log(this.$store.state.slogan)
   },
   methods: {
     ...mapActions([

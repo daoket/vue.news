@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '@/store'
 import Select from '@/components/Select'
 import Point from '@/components/Point'
 import Author from '@/components/Author'
@@ -30,6 +31,11 @@ const router = new Router({
       component: Select
     }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  store.dispatch('updateHistoryLength')
+  next()
 })
 
 export default router
