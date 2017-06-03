@@ -58,9 +58,9 @@ export default {
     },
     goHome () {
       if (history.length) {
-        history.go(parseFloat(-history.length) + 1)
-      } else {
         this.$router.go(parseFloat(-this.$store.state.historyLength) + 1)
+//      history.go(parseFloat(-history.length) + 1)
+      } else {
       }
 //    this.$router.go('/select')
 //    this.$router.replace(this.pathName)
