@@ -7,11 +7,13 @@ export default {
     banners: [],
     searchNews: [],
     loadBtn: false,
-    pathName: '',
     loadAnimation: true,
     newsUrl: 'https://route.showapi.com/109-35?showapi_appid=34477&showapi_sign=cfa5957a730f43d38886bd16469b2a86&channelId=5572a108b3cdc86cf39001cd&needContent=0&needHtml=1&page='
   },
   mutations: {
+    /**
+     * @desc 加载新闻
+     */
     loadNews (state) {
       let data = state.data
       if (data.length > 2) { // 判断数据是否存在
@@ -34,6 +36,9 @@ export default {
       state.loadBtn = true
       state.loadAnimation = false
     },
+    /**
+     * @desc 点击加载更多
+     */
     loadMore (state) {
       state.page++
       state.loadAnimation = true
@@ -43,7 +48,9 @@ export default {
     }
   },
   actions: {
-    // axios异步请求函数
+    /**
+     * @desc axios异步请求函数 类似jquery的ajax方法
+     */
     askNews ({commit, state}, url) {
       axios({
         method: 'get',

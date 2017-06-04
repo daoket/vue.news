@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+/**
+ *  @desc 导入需要的store
+ */
 import SelectStore from './SelectStore'
 import PointStore from './PointStore'
 import AuthorStore from './AuthorStore'
@@ -15,6 +17,10 @@ export default new Vuex.Store({
     historyLength: 0
   },
   mutations: {
+    /*
+     * @desc 记录路由切换次数
+     * @arg {object} state 状态
+     */
     updateHistoryLength (state) {
       state.historyLength++
     }

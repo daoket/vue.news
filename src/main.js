@@ -5,10 +5,12 @@ import App from './App'
 import router from './router'
 
 import axios from 'axios' // 处理http请求
-import store from './store'
+import store from './store' // 状态管理
 import VueLazyload from 'vue-lazyload' // 懒加载
 
-// 配置懒加载
+/**
+ * @desc 懒加载配置
+ */
 Vue.use(VueLazyload, {
   preLoad: 1.3,
   error: '../static/error.jpg',

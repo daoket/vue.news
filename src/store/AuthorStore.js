@@ -1,4 +1,7 @@
 export default {
+  /**
+   * @desc 作者页面数据
+   */
   state: {
     author: [{
       src: require('../assets/author/author.jpg'),

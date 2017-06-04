@@ -1,5 +1,8 @@
 export default {
   mutations: {
+    /**
+     * @desc 显示隐藏右侧菜单
+     */
     toggleMenu () {
       var page = document.querySelector('#app .page')
       var aside = document.querySelector('.head .aside')

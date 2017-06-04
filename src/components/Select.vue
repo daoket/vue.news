@@ -59,6 +59,9 @@ export default {
     }
   },
   computed: {
+    /**
+     * @desc 从store中引入需要的数据
+     */
     ...mapState({
       page: state => state.SelectStore.page,
       newsUrl: state => state.SelectStore.newsUrl,
@@ -70,8 +73,11 @@ export default {
     })
   },
   created: function () {
-    this.askNews(this.newsUrl + this.page)
+    this.askNews(this.newsUrl + this.page) // 第一次加载请求数据
     let _this = this
+    /**
+     * @desc 判断是否显示回到顶部的火箭图标
+     */
     window.onscroll = function () {
       let leaveTop = document.body.scrollTop
       if (leaveTop > 600) {
@@ -80,9 +86,6 @@ export default {
         _this.rocket = false
       }
     }
-    var newPathName = location.pathname
-    this.pathname = newPathName
-    this.updatePathName(newPathName)
     console.log(this.$store.state.slogan)
   },
   methods: {
@@ -90,18 +93,30 @@ export default {
       'askNews', 'setSrc'
     ]),
     ...mapMutations([
-      'loadMore', 'updatePathName'
+      'loadMore'
     ]),
-    setBannerSrc (src) {  // 设置轮播图
+    /**
+     * @desc 设置轮播图地址
+     */
+    setBannerSrc (src) {
       return src
     },
-    setNewSrc (url) {  // 设置新闻图片
+    /**
+     * @desc 设置新闻图片地址
+     */
+    setNewSrc (url) {
       return url
     },
-    loadMoreBtn () { // 加载更多
+    /**
+     * @desc 加载更多
+     */
+    loadMoreBtn () {
       this.loadMore()
       this.askNews(this.newsUrl + this.page)
     },
+    /**
+     * @desc 回到顶部
+     */
     goPageTop () {
       document.body.scrollTop = 0
     }
