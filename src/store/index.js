@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 /**
- *  @desc 导入需要的store
+ * @desc 导入需要的store
+ * @author wtniu
  */
 import SelectStore from './SelectStore'
 import PointStore from './PointStore'

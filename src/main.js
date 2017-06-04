@@ -10,6 +10,7 @@ import VueLazyload from 'vue-lazyload' // 懒加载
 
 /**
  * @desc 懒加载配置
+ * @author wtniu
  */
 Vue.use(VueLazyload, {
   preLoad: 1.3,
