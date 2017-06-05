@@ -4,9 +4,7 @@
       <app-head></app-head>
       <app-nav></app-nav>
       <keep-alive>
-        <transition name="fade" mode="out-in">
-          <router-view class="fadeView"></router-view>
-        </transition>
+        <router-view class="fadeView"></router-view>
         <!--<router-view></router-view>-->
       </keep-alive>
       <app-foot></app-foot>
@@ -43,10 +41,4 @@ export default {
 .toggle{
   transform: translateX(-120px);
 }
-/*.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.5s
-}
-.fade-enter, .fade-leave-active {
-  opacity: 0
-}*/
 </style>

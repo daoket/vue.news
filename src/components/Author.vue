@@ -199,6 +199,7 @@ export default {
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    border: none;
     outline: none;
     color: #FFFFFF;
     background: rgba(0,0,0,0.5);

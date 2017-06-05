@@ -12,9 +12,11 @@
     </div>
     <!--加载动画-->
     <div class="spinner" v-show='loadAnimation'></div>
-    <svg v-show='rocket' class="icon goTop" @click='goPageTop' aria-hidden="true">
-      <use xlink:href="#icon-0028"></use>
-    </svg>
+    <transition name='fade' mode='out-in'>
+      <svg v-show='rocket' class="icon goTop" @click='goPageTop' aria-hidden="true">
+        <use xlink:href="#icon-0028"></use>
+      </svg>
+    </transition>
     <section class="news">
       <div v-if='requestStatus'>
         <div v-for='news in newsDate' :id="news.id">
@@ -234,17 +236,23 @@ export default {
 .goTop{
   color: #50BFFF;
   position: fixed;
-  bottom: 60px;
-  right: 30px;
+  bottom: 40px;
+  right: 20px;
   z-index: 9999;
   cursor: pointer;
   width: 60px;
   height: 60px;
-  transition: all 1s;
-  transform: scale(0.5);
+  transition: all 1s ease;
+  transform: scale(0.6);
 }
 .goTop:active{
   color: #C40000;
   transform: scale(1);
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.8s
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0
 }
 </style>
