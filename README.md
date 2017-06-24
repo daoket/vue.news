@@ -9,7 +9,7 @@
   <a href="https://saucelabs.com/u/vuejs"><img src="https://saucelabs.com/browser-matrix/vuejs.svg" alt="Sauce Test Status"></a>
 </p>
 <p align="center">地址:<a href="http://www.wtniu.win/news/#/select">http://www.wtniu.win/news/#/select</a></p>
-<p align="center"><a href="https://daoket.github.io/news/index.html#/select"><img src="https://daoket.github.io/news/address.png" alt="vue-music"></a></p>
+<p align="center"><a href="https://daoket.github.io/news/index.html#/select"><img src="https://daoket.github.io/news/address.png" alt="vue-news"></a></p>
 <p align="center">在手机上效果更好，扫一扫体验</p>
 
 ### 简介
