@@ -57,10 +57,14 @@ export default {
         url: url
       })
       .then((res) => {
-        let data = res.data.showapi_res_body.pagebean.contentlist
-        state.data = data
-        for (let i in data) {
-          state.searchNews.push({title: data[i].title, id: data[i].id})
+        if (res.data.showapi_res_code !== -2) {
+          let data = res.data.showapi_res_body.pagebean.contentlist
+          state.data = data
+          for (let i in data) {
+            state.searchNews.push({title: data[i].title, id: data[i].id})
+          }
+        } else {
+          alert('新闻接口已经超出请求上限 /(ㄒoㄒ)/~~！！！')
         }
         commit('loadNews')
       })
