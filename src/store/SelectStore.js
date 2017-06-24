@@ -67,7 +67,7 @@ export default {
         } else {
           var tips = `<p class="tip">
             <span>新闻接口已经超出请求上限 /(ㄒoㄒ)/~~！！！</span>
-            <span>和图灵机器人聊天，缓解失望的心情：</span>
+            <span>选择和图灵机器人聊天，缓解失望的心情吧：</span>
             <a href="http://lx.openspeech.cn/auth/project/ai_niu/index.html">快来和我聊天！</a>
           </p>`
           $(tips).appendTo('.news')
