@@ -255,4 +255,17 @@ export default {
 .fade-enter, .fade-leave-active {
   opacity: 0
 }
+.tip{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  a{
+    color: #19C8A9;
+  }
+  span{
+    margin-bottom: 10px;
+  }
+}
 </style>

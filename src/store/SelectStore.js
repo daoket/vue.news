@@ -1,4 +1,5 @@
 import axios from 'axios'
+import $ from 'jquery'
 export default {
   state: {
     page: 1,
@@ -64,7 +65,12 @@ export default {
             state.searchNews.push({title: data[i].title, id: data[i].id})
           }
         } else {
-          alert('新闻接口已经超出请求上限 /(ㄒoㄒ)/~~！！！')
+          var tips = `<p class="tip">
+            <span>新闻接口已经超出请求上限 /(ㄒoㄒ)/~~！！！</span>
+            <span>和图灵机器人聊天，缓解失望的心情：</span>
+            <a href="http://lx.openspeech.cn/auth/project/ai_niu/index.html">快来和我聊天！</a>
+          </p>`
+          $(tips).appendTo('.news')
         }
         commit('loadNews')
       })
