@@ -1,8 +1,8 @@
 {
-  "name": "aa",
-  "version": "1.0.0",
+  "name": "vue.news",
+  "version": "2.0.0",
   "description": "A Vue.js project",
-  "author": "daoket <daoket@163.com>",
+  "author": "wtniu <daoket@163.com>",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --open --inline --progress --config build/webpack.dev.conf.js",
