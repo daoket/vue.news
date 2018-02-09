@@ -3,7 +3,7 @@
     <button class="goHome" @click='goHome'>Home</button>
     <!--<a v-link="select">select</a>-->
     <div class="banner">
-      <div v-for='a in author' class="item">
+      <div v-for='(a, index) in author' :key='index' class="item">
         <div class="msg">
           <img :src="setAutherSrc(a.src)"/>
           <p class="name">{{a.name}}</p>
@@ -14,7 +14,7 @@
       </div>
     </div>
     <section class="more">
-      <div v-for='o in other' class="other">
+      <div v-for='(o, index) in other' :key='index' class="other">
         <div class="authorMsg">
           <img :src="setOtherSrc(o.src)"/>
           <div class="intro">
@@ -53,28 +53,16 @@ export default {
       return src
     },
     fetchData (to, from) {
-//    location.hash = 'select'
-//    console.log(this.$route)
+      location.hash = 'select'
+      console.log(this.$route)
     },
     goHome () {
       if (history.length) {
         this.$router.go(parseFloat(-this.$store.state.historyLength) + 1)
-//      history.go(parseFloat(-history.length) + 1)
-      } else {
       }
-//    this.$router.go('/select')
-//    this.$router.replace(this.pathName)
-//    this.$router.push('/select') // 跳转到指定页面,有历史记录 如：首页
-//    this.$router.replace('/select') // 跳转到指定页面， 没有有历史记录 如：首页
-//    this.$route.go({path: '/select'})
-//    this.$route.redirect({
-//      '/': '/select'
-//    })
-//    console.log(0)
     }
   },
   beforeRouteEnter (to, from, next) {
-//  console.log(3)
     next()
   },
   beforeRouteUpdate (to, from, next) {
@@ -82,7 +70,6 @@ export default {
     next()
   },
   beforeRouteLeave (to, from, next) {
-//  this.$router.push('/select')
     next()
   }
 }

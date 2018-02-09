@@ -4,6 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+import './style/public.css'
+
 import axios from 'axios' // 处理http请求
 import store from './store' // 状态管理
 import VueLazyload from 'vue-lazyload' // 懒加载
@@ -14,13 +16,14 @@ import VueLazyload from 'vue-lazyload' // 懒加载
  */
 Vue.use(VueLazyload, {
   preLoad: 1.3,
-  error: '../static/error.jpg',
-  loading: '../static/loading.gif',
+  error: './assets/error.jpg',
+  loading: './assets/loading.gif',
   attempt: 1
 })
 
 Vue.prototype.$axios = axios
 
+// 去掉开发环境打印信息
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

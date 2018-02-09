@@ -1,6 +1,6 @@
 <template>
   <header class="head">
-    <a href="javascript: void(0)"><img class="baijia" src="../../assets/head/logo.png"/></a>
+    <a href="javascript: void(0)"><img class="vNews" @click="goHome" src="../../assets/head/logo.png"/></a>
     <svg class="icon searchBtn" @click='openSearch' aria-hidden="true">
       <use xlink:href="#icon-sousuo"></use>
     </svg>
@@ -19,7 +19,7 @@
       <div class="content">
         <p class="today">今天</p>
         <ul class="news">
-          <li ref='newsItem' v-for='(news, index) in searchNews'>
+          <li ref='newsItem' v-for='(news, index) in searchNews' :key='index'>
             <a :href="'#' + news.id" @click='goNews'>
               <p v-if='+index < 3'><i class="isTop3"> {{index + 1}} </i><span ref='title' class="title"> {{news.title}}</span></p>
               <p v-else><i> {{index + 1}} </i><span ref='title' class="title"> {{news.title}}</span></p>
@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="aside" @click='toggleMenu'>
-      <div v-for='i in 3' class="line"></div>
+      <div v-for='i in 3' :key='i' class="line"></div>
     </div>
   </header>
 </template>
@@ -37,7 +37,7 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 export default {
-  name: 'head',
+  name: 'apphead', // Do not use built-in or reserved HTML elements as component id
   data () {
     return {
       imgs: [],
@@ -82,6 +82,9 @@ export default {
       this.closeSearch()
       this.clearSearchContent()
     },
+    goHome () {
+      this.$router.push('/select')
+    },
     clearSearchContent () {
       this.searchContent = ''
     },
@@ -104,7 +107,7 @@ export default {
     right: 20%;
     cursor: pointer;
   }
-  .baijia{
+  .vNews{
     height: 20px;
     top: 20px;
     left: 10px;

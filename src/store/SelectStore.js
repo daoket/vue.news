@@ -1,5 +1,5 @@
 import axios from 'axios'
-import $ from 'jquery'
+import $ from 'webpack-zepto'
 export default {
   state: {
     page: 1,
@@ -57,23 +57,23 @@ export default {
         method: 'get',
         url: url
       })
-      .then((res) => {
-        if (res.data.showapi_res_code !== -2) {
-          let data = res.data.showapi_res_body.pagebean.contentlist
-          state.data = data
-          for (let i in data) {
-            state.searchNews.push({title: data[i].title, id: data[i].id})
+        .then((res) => {
+          if (res.data.showapi_res_code !== -2) {
+            let data = res.data.showapi_res_body.pagebean.contentlist
+            state.data = data
+            for (let i in data) {
+              state.searchNews.push({title: data[i].title, id: data[i].id})
+            }
+          } else {
+            var tips = `<p class="tip">
+              <span>接口请求已达上限 /(ㄒoㄒ)/~~！！！</span>
+              <span>选择和AI聊天，缓解失望的心情吧：</span>
+              <a href="http://lx.openspeech.cn/auth/project/ai_niu/index.html">快来和我聊天！</a>
+            </p>`
+            $(tips).appendTo('.news')
           }
-        } else {
-          var tips = `<p class="tip">
-            <span>新闻接口已经超出请求上限 /(ㄒoㄒ)/~~！！！</span>
-            <span>选择和图灵机器人聊天，缓解失望的心情吧：</span>
-            <a href="http://lx.openspeech.cn/auth/project/ai_niu/index.html">快来和我聊天！</a>
-          </p>`
-          $(tips).appendTo('.news')
-        }
-        commit('loadNews')
-      })
+          commit('loadNews')
+        })
     }
   }
 }

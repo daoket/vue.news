@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="prev">
-        <div v-for='p in points' class="list">
+        <div v-for='(p, index) in points' :key='index' class="list">
           <div class="mask">
             <span class="times">{{p.times}}</span>
             <h2>{{p.title}}</h2>
