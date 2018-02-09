@@ -1,8 +1,8 @@
 <template>
-  <section class="menu">
+  <section class="menus">
     <p class="user" title="">{{userName}}</p>
     <ul class="aside">
-    	<li v-for='m in menus'><a href="">{{m.text}}</a></li>
+      <li v-for='(m, index) in menus' :key='index'><a href="">{{m.text}}</a></li>
     </ul>
   </section>
 </template>
@@ -10,7 +10,6 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-  name: 'menu',
   computed: {
     ...mapState({
       userName: state => state.MenuStore.userName,
@@ -21,7 +20,7 @@ export default {
 </script>
 
 <style lang="stylus">
-.menu{
+.menus{
   position: fixed;
   top: 0;
   right: 0;
@@ -59,6 +58,5 @@ export default {
   .aside li:hover{
     background-color: #3E90E3;
   }
-  
 }
 </style>

@@ -1,15 +1,13 @@
 <template>
   <div id="app">
+    <app-menu></app-menu>
     <div class="page">
       <app-head></app-head>
       <app-nav></app-nav>
-      <keep-alive>
-        <router-view class="fadeView"></router-view>
-        <!--<router-view></router-view>-->
-      </keep-alive>
+      <!--keep-alive 切换路不会触发mounted-->
+      <keep-alive><router-view></router-view></keep-alive>
       <app-foot></app-foot>
     </div>
-    <app-menu></app-menu>
   </div>
 </template>
 

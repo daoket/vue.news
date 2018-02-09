@@ -1,7 +1,7 @@
 <template>
   <section class="nav">
     <!--v-for遍历路由-->
-    <div class="nav" v-for='m in menus'>
+    <div class="nav" v-for='(m, index) in menus' :key='index'>
       <router-link :to='setPaht(m.path)'><span>{{m.text}}</span></router-link>
     </div>
   </section>
@@ -9,7 +9,6 @@
 
 <script>
 export default {
-  name: 'nav',
   data () {
     return {
       // 路由参数

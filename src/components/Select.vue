@@ -19,7 +19,7 @@
     </transition>
     <section class="news">
       <div v-if='requestStatus'>
-        <div v-for='news in newsDate' :id="news.id">
+        <div v-for='(news, index) in newsDate' :key='index' :id="news.id">
           <a href="javascript: void(0)" class="new" :key='news.channelId'>
             <img v-lazy='news.imageurls[0].url' :src="setNewSrc(news.imageurls[0].url)"/>
             <div class="intro">
@@ -30,7 +30,7 @@
         </div>
         <button class="loadMore" @click='loadMoreBtn' v-show='loadBtn'>点击加载更多</button>
       </div>
-      <div class="fail" v-else>~~~~(>_<)~~~~， 请求到数据失败!</div>
+      <div class="fail" v-else>/(ㄒoㄒ)/~~， 请求到数据失败!</div>
     </section>
   </div>
 </template>
@@ -41,7 +41,6 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
 // 导入vuex
 import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
-  name: 'select',
   data () {
     return {
       rocket: false,
@@ -209,12 +208,10 @@ export default {
   height: 80px;
   margin: 50px auto;
   background-color: #69C61D
- 
-  border-radius: 100%; 
+  border-radius: 100%;
   -webkit-animation: scaleout 1.0s infinite ease-in-out;
   animation: scaleout 1.0s infinite ease-in-out;
 }
- 
 @-webkit-keyframes scaleout {
   0% { -webkit-transform: scale(0.0) }
   100% {
@@ -222,7 +219,6 @@ export default {
     opacity: 0;
   }
 }
- 
 @keyframes scaleout {
   0% {
     transform: scale(0.0);
