@@ -10,7 +10,6 @@
 <p align="center">查看Demo:<a href="https://daoket.github.io/news/index.html">https://daoket.github.io/news/index.html</a>,在手机上效果更好，扫一扫体验</p>
 <p align="center"><a href="https://daoket.github.io/news/index.html"><img src="https://daoket.github.io/news/address.png" alt="vue-music"></a></p>
 
-
 ### 实现的功能
 1. 首页轮播图
 2. 新闻实时请求、点击加载更多
