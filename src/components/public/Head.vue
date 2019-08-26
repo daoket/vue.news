@@ -50,7 +50,7 @@ export default {
     })
   },
   watch: {
-    searchContent (curVal, oldVal) {
+    searchContent (curVal) {
       if (curVal === '') {
         this.$refs.newsItem.map((item) => {
           item.style.display = 'block'
@@ -95,7 +95,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="scss">
 .head{
   height: 60px;
   background: #262627;

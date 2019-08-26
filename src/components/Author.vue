@@ -52,7 +52,7 @@ export default {
     setOtherSrc (src) {
       return src
     },
-    fetchData (to, from) {
+    fetchData () {
       location.hash = 'select'
       console.log(this.$route)
     },
@@ -75,7 +75,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="scss">
 .author{
   background: #fff;
   border-right: 1px solid #666;

@@ -87,7 +87,7 @@ export default {
         _this.rocket = false
       }
     }
-    console.log(this.$store.state.slogan)
+    console.log(`%c ${this.$store.state.slogan}`,"font-size: 22px;color:#00BBEE", "Copyright © 2019");
   },
   methods: {
     ...mapActions([
@@ -129,7 +129,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="scss">
 .select{
   background: #fff;
   .swiper-wrapper{
@@ -207,7 +207,7 @@ export default {
   width: 80px;
   height: 80px;
   margin: 50px auto;
-  background-color: #69C61D
+  background-color: #69C61D;
   border-radius: 100%;
   -webkit-animation: scaleout 1.0s infinite ease-in-out;
   animation: scaleout 1.0s infinite ease-in-out;

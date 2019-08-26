@@ -12,10 +12,11 @@
 </template>
 
 <script>
-import AppHead from '@/components/public/Head'
-import AppMenu from '@/components/public/Menu'
-import AppNav from '@/components/public/Nav'
-import AppFoot from '@/components/public/Foot'
+import AppHead from './components/public/Head'
+import AppMenu from './components/public/Menu'
+import AppNav from './components/public/Nav'
+import AppFoot from './components/public/Foot'
+
 export default {
   name: 'app',
   components: {

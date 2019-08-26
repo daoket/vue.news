@@ -8,7 +8,7 @@
   </footer>
 </template>
 
-<style lang="stylus">
+<style lang="scss">
 .foot{
   height: 100px;
   background-color: #262627;

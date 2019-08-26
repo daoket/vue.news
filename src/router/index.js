@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import store from '@/store'
-import Select from '@/components/Select'
-import Point from '@/components/Point'
-import Author from '@/components/Author'
+import store from '../store'
+import Select from '../components/Select'
+import Point from '../components/Point'
+import Author from '../components/Author'
 
 Vue.use(Router)
 

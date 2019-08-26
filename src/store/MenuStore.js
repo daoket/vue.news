@@ -1,7 +1,7 @@
+/**
+ * @desc 右侧菜单数据
+ */
 export default {
-  /**
-   * @desc 右侧菜单数据
-   */
   state: {
     userName: '京州市委书记李达康',
     menus: [{

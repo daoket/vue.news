@@ -19,7 +19,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="scss">
 .menus{
   position: fixed;
   top: 0;

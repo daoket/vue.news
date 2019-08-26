@@ -37,7 +37,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="scss">
 .point{
   color: #fff;
   background: #fff;

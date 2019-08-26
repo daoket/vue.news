@@ -1,7 +1,7 @@
+/**
+ * @desc 话题页面数据
+ */
 export default {
-  /**
-   * @desc 话题页面数据
-   */
   state: {
     points: [{
       times: '609期',
