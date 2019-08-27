@@ -8,7 +8,7 @@
   <a href="https://github.com/surmon-china/vue-awesome-swiper"><img src="https://img.shields.io/badge/vue--awesome--swiper-v3.1.3-blue.svg" alt="vue-awesome-swiper"></a>
 </p>
 <p align="center">查看Demo:<a href="https://daoket.github.io/news/index.html">https://daoket.github.io/news/index.html</a>,在手机上效果更好，扫一扫体验</p>
-<p align="center"><a href="https://daoket.github.io/news/index.html"><img src="https://daoket.github.io/news/address.png" alt="vue-music"></a></p>
+<p align="center"><a href="https://daoket.github.io/news/index.html"><img src="https://daoket.github.io/news/old/address.png" alt="vue-music"></a></p>
 
 ### 实现的功能
 1. 首页轮播图
@@ -39,10 +39,10 @@ npm run build
 
 ### 首页
 <center>
-<img src="https://daoket.github.io/news/eg1.jpg" width='375' height='667'/>
+<img src="https://daoket.github.io/news/old/eg1.jpg" width='375' height='667'/>
 </center>
 
 ### 菜单
 <center>
-<img src="https://daoket.github.io/news/eg2.jpg" width='375' height='667'/>
+<img src="https://daoket.github.io/news/old/eg2.jpg" width='375' height='667'/>
 </center>
