@@ -13,7 +13,7 @@
     "url": "https://github.com/daoket/vue.news"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "reset-css": "^4.0.1",
     "vue": "^2.6.10",
     "vue-awesome-swiper": "^3.1.3",
