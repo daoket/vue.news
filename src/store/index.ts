@@ -1,18 +1,15 @@
 /**
- * @desc 导入需要的store
- * @author wtniu
+ * @author: daoket
+ * @description 导入需要的store
  */
-import Vue from 'vue'
-import Vuex from 'vuex'
-import SelectStore from './SelectStore'
+import { createStore } from 'vuex'
+import HomeStore from './HomeStore'
 import PointStore from './PointStore'
 import AuthorStore from './AuthorStore'
 import MenuStore from './MenuStore'
 import HeadStore from './HeadStore'
 
-Vue.use(Vuex)
-
-export default new Vuex.Store({
+export default createStore({
   state: {
     slogan: '叩首为梦 码梦为生！',
     historyLength: 0
@@ -32,7 +29,7 @@ export default new Vuex.Store({
     }
   },
   modules: {
-    SelectStore,
+    HomeStore,
     PointStore,
     AuthorStore,
     MenuStore,

@@ -1,7 +1,7 @@
 <template>
   <section class="author">
     <button class="goHome" @click='goHome'>Home</button>
-    <!--<a v-link="select">select</a>-->
+    <!--<a v-link="home">home</a>-->
     <div class="banner">
       <div v-for='(a, index) in author' :key='index' class="item">
         <div class="msg">
@@ -31,34 +31,39 @@
   </section>
 </template>
 
-<script>
-import { mapState } from 'vuex'
+<script lang="ts">
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+
 export default {
-  name: 'author',
-  computed: {
-    ...mapState({
-      author: state => state.AuthorStore.author,
-      other: state => state.AuthorStore.other,
-      pathName: state => state.SelectStore.pathName
-    })
+  name: 'Author',
+  setup() {
+    const store = useStore()
+
+    return {
+      author: computed(() => store.state.AuthorStore.author),
+      other: computed(() => store.state.AuthorStore.other),
+      pathName: computed(() => store.state.AuthorStore.pathName),
+    }
   },
   watch: {
-    '$route': 'fetchData'
+    // '$route': 'fetchData'
   },
   methods: {
-    setAutherSrc (src) {
+    setAutherSrc (src: string) {
       return src
     },
-    setOtherSrc (src) {
+    setOtherSrc (src: string) {
       return src
     },
-    fetchData () {
-      location.hash = 'select'
-      console.log(this.$route)
-    },
+    // TODO
+    // fetchData () {
+    //   location.hash = 'home'
+    //   console.log(this.$route)
+    // },
     goHome () {
       if (history.length) {
-        this.$router.go(parseFloat(-this.$store.state.historyLength) + 1)
+        this.$router.go(Number(-(this as any).$store.state.historyLength) + 1)
       }
     }
   },
@@ -75,12 +80,12 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .author{
   background: #fff;
   border-right: 1px solid #666;
   .banner{
-    background: url(../assets/author/author_banner_bg.jpg);
+    background: url(@/assets/author/author_banner_bg.jpg);
     .item{
       height: 210px;
       width: 45%;

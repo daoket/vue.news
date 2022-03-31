@@ -1,27 +1,18 @@
 <template>
-  <div class="select">
+  <div class="home">
     <div class="banner">
-      <swiper :options="swiperOption"  ref="mySwiper">
-        <!-- 这部分放你要渲染的那些内容 -->
-        <swiper-slide v-for='img in banners' :key="img.channelId">
-          <img :src="setBannerSrc(img)"/>
-        </swiper-slide>
-        <!-- 这是轮播的小圆点 -->
-        <div v-show='loadBtn' class="swiper-pagination" slot="pagination"></div>
-      </swiper>
+      <Swiper />
     </div>
     <!--加载动画-->
     <div class="spinner" v-show='loadAnimation'></div>
     <transition name='fade' mode='out-in'>
-      <svg v-show='rocket' class="icon goTop" @click='goPageTop' aria-hidden="true">
-        <use xlink:href="#icon-0028"></use>
-      </svg>
+      <svg v-show='rocket' class="icon goTop" @click='goPageTop' t="1648682894661" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1545" width="64" height="64"><path d="M395.264 304.128c-70.656 92.16-145.408 194.56-189.44 304.128-5.12 12.288 6.144 23.552 18.432 20.48L358.4 590.848M628.736 304.128c70.656 92.16 145.408 194.56 189.44 304.128 5.12 12.288-6.144 23.552-18.432 20.48L665.6 590.848" fill="#F79839" p-id="1546"></path><path d="M676.864 711.68H345.088C318.464 624.64 312.32 532.48 331.776 443.392c22.528-101.376 70.656-197.632 140.288-277.504l7.168-8.192c16.384-19.456 46.08-19.456 62.464 0l7.168 8.192c70.656 79.872 117.76 176.128 140.288 277.504 20.48 89.088 14.336 181.248-12.288 268.288z" fill="#004FFF" p-id="1547"></path><path d="M467.968 675.84c-51.2 0-95.232-37.888-102.4-88.064-8.192-60.416-6.144-120.832 6.144-180.224 21.504-95.232 64.512-185.344 126.976-262.144-8.192 2.048-15.36 6.144-20.48 12.288l-7.168 8.192C402.432 245.76 354.304 340.992 331.776 443.392 312.32 532.48 318.464 624.64 345.088 711.68h331.776c4.096-12.288 7.168-23.552 10.24-35.84H467.968z" fill="#1D6FFF" p-id="1548"></path><path d="M381.952 721.92h236.544V778.24H381.952z" fill="#004FFF" p-id="1549"></path><path d="M600.064 786.432H401.408l99.328 94.208z" fill="#FBB03B" p-id="1550"></path><path d="M430.08 427.008a80.896 79.872 0 1 0 161.792 0 80.896 79.872 0 1 0-161.792 0Z" fill="#E9F3FB" p-id="1551"></path></svg>
     </transition>
     <section class="news">
       <div v-if='requestStatus'>
         <div v-for='(news, index) in newsDate' :key='index' :id="news.id">
           <a href="javascript: void(0)" class="new" :key='news.channelId'>
-            <img v-lazy='news.imageurls[0].url' :src="setNewSrc(news.imageurls[0].url)"/>
+            <img :src="setNewSrc(news.img)"/>
             <div class="intro">
               <h4>{{news.title}}</h4>
               <p><span>{{news.source}}</span> | <span>{{news.pubDate}}</span></p>
@@ -35,43 +26,33 @@
   </div>
 </template>
 
-<script>
-// 导入轮播图组件
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
-// 导入vuex
-import { mapState, mapMutations, mapActions } from 'vuex'
+<script lang="ts">
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+import { Swiper } from '@/components'
+
 export default {
   data () {
     return {
       rocket: false,
       requestStatus: true,
-      swiperOption: {
-        pagination: '.swiper-pagination',
-        slidesPerView: 'auto',
-        centeredSlides: true,
-        paginationClickable: true,
-        spaceBetween: 30,
-        onSlideChangeEnd: swiper => {
-          // 这个位置放swiper的回调方法
-          this.page = swiper.realIndex + 1
-          this.index = swiper.realIndex
-        }
-      }
     }
   },
-  computed: {
-    /**
-     * @desc 从store中引入需要的数据
-     */
-    ...mapState({
-      page: state => state.SelectStore.page,
-      newsUrl: state => state.SelectStore.newsUrl,
-      banners: state => state.SelectStore.banners,
-      newsDate: state => state.SelectStore.newsDate,
-      loadBtn: state => state.SelectStore.loadBtn,
-      pathName: state => state.SelectStore.pathName,
-      loadAnimation: state => state.SelectStore.loadAnimation
-    })
+  setup() {
+    const store = useStore()
+
+    return {
+      page: computed(() => store.state.HomeStore.page),
+      newsUrl: computed(() => store.state.HomeStore.newsUrl),
+      newsDate: computed(() => store.state.HomeStore.newsDate),
+      loadBtn: computed(() => store.state.HomeStore.loadBtn),
+      pathName: computed(() => store.state.HomeStore.pathName),
+      loadAnimation: computed(() => store.state.HomeStore.loadAnimation),
+
+      loadMore: () => store.commit('loadMore'),
+      askNews: (url: string) => store.dispatch('askNews', url),
+      setSrc: () => store.commit('setSrc'),
+    }
   },
   created: function () {
     this.askNews(this.newsUrl + this.page) // 第一次加载请求数据
@@ -80,32 +61,20 @@ export default {
      * @desc 判断是否显示回到顶部的火箭图标
      */
     window.onscroll = function () {
-      let leaveTop = document.body.scrollTop
+      const leaveTop = document.body.scrollTop || window.pageYOffset
       if (leaveTop > 600) {
         _this.rocket = true
       } else {
         _this.rocket = false
       }
     }
-    console.log(`%c ${this.$store.state.slogan}`,"font-size: 22px;color:#00BBEE", "Copyright © 2019");
+    console.log(`%c ${(this as any).$store.state.slogan}`,"font-size: 22px;color:#00BBEE", "Copyright © 2022");
   },
   methods: {
-    ...mapActions([
-      'askNews', 'setSrc'
-    ]),
-    ...mapMutations([
-      'loadMore'
-    ]),
-    /**
-     * @desc 设置轮播图地址
-     */
-    setBannerSrc (src) {
-      return src
-    },
     /**
      * @desc 设置新闻图片地址
      */
-    setNewSrc (url) {
+    setNewSrc (url: string) {
       return url
     },
     /**
@@ -119,26 +88,18 @@ export default {
      * @desc 回到顶部
      */
     goPageTop () {
-      document.body.scrollTop = 0
+      window.scrollTo(0, 0)
     }
   },
   components: {
-    swiper,
-    swiperSlide
+    Swiper,
   }
 }
 </script>
 
-<style lang="scss">
-.select{
+<style lang="scss" scoped>
+.home{
   background: #fff;
-  .swiper-wrapper{
-    height: 200px;
-    .swiper-slide img{
-      width: 100%;
-      height: 200px;
-    }
-  }
   .news{
     min-height: 500px;
     padding: 0 10px;
@@ -203,7 +164,7 @@ export default {
 .spinner {
   position: fixed;
   left: 40%;
-  bottom: 10%;
+  bottom: 40%;
   width: 80px;
   height: 80px;
   margin: 50px auto;

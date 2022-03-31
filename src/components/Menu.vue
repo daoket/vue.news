@@ -7,19 +7,23 @@
   </section>
 </template>
 
-<script>
-import { mapState } from 'vuex'
+<script lang="ts">
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+
 export default {
-  computed: {
-    ...mapState({
-      userName: state => state.MenuStore.userName,
-      menus: state => state.MenuStore.menus
-    })
-  }
+  setup() {
+    const store = useStore()
+
+    return {
+      userName: computed(() => store.state.MenuStore.userName),
+      menus: computed(() => store.state.MenuStore.menus),
+    }
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .menus{
   position: fixed;
   top: 0;

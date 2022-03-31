@@ -1,6 +1,4 @@
-/**
- * @desc 话题页面数据
- */
+// 话题页面数据
 export default {
   state: {
     points: [{

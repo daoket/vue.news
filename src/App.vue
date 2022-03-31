@@ -1,29 +1,29 @@
 <template>
   <div id="app">
-    <app-menu></app-menu>
+    <Menu />
     <div class="page">
-      <app-head></app-head>
-      <app-nav></app-nav>
-      <!--keep-alive 切换路不会触发mounted-->
-      <keep-alive><router-view></router-view></keep-alive>
-      <app-foot></app-foot>
+      <Head />
+      <Nav />
+      <router-view v-slot="{ Component }">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
+      <Foot />
     </div>
   </div>
 </template>
 
-<script>
-import AppHead from './components/public/Head'
-import AppMenu from './components/public/Menu'
-import AppNav from './components/public/Nav'
-import AppFoot from './components/public/Foot'
+<script lang="ts">
+import { Head, Menu, Nav, Foot } from '@/components'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
-    'app-head': AppHead,
-    'app-menu': AppMenu,
-    'app-nav': AppNav,
-    'app-foot': AppFoot
+    Head,
+    Menu,
+    Nav,
+    Foot,
   }
 }
 </script>

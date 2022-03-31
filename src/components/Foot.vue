@@ -1,6 +1,6 @@
 <template>
   <footer class="foot">
-    <img src="../../assets/head/logo.png"/>
+    <img src="@/assets/head/logo.png"/>
     <div class="email">
       <p>联系我：wt_niu@163.com</p>
       <a href="https://github.com/daoket/vue.news"><p>Fork me on GitHub</p></a>
@@ -8,7 +8,7 @@
   </footer>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .foot{
   height: 100px;
   background-color: #262627;

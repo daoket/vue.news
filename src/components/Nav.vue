@@ -2,19 +2,20 @@
   <section class="nav">
     <!--v-for遍历路由-->
     <div class="nav" v-for='(m, index) in menus' :key='index'>
-      <router-link :to='setPaht(m.path)'><span>{{m.text}}</span></router-link>
+      <router-link :to='setPath(m.path)'><span>{{m.text}}</span></router-link>
     </div>
   </section>
 </template>
 
-<script>
+<script lang="ts">
 export default {
+  name: "Nav",
   data () {
     return {
       // 路由参数
       menus: [{
         text: '精选',
-        path: '/select'
+        path: '/home'
       }, {
         text: '话题',
         path: '/point'
@@ -25,14 +26,14 @@ export default {
     }
   },
   methods: {
-    setPaht (path) {
+    setPath (path: string) {
       return path
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .nav{
   width: 100%;
   height: 50px;

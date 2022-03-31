@@ -1,20 +1,14 @@
 <template>
   <header class="head">
-    <a href="javascript: void(0)"><img class="vNews" @click="goHome" src="../../assets/head/logo.png"/></a>
-    <svg class="icon searchBtn" @click='openSearch' aria-hidden="true">
-      <use xlink:href="#icon-sousuo"></use>
-    </svg>
+    <a href="javascript: void(0)"><img class="vNews" @click="goHome" src="@/assets/head/logo.png"/></a>
+    <svg class="icon searchBtn" @click='openSearch' t="1648682604996" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1270" width="64" height="64"><path d="M966.4 924.8l-230.4-227.2c60.8-67.2 96-156.8 96-256 0-217.6-176-390.4-390.4-390.4-217.6 0-390.4 176-390.4 390.4 0 217.6 176 390.4 390.4 390.4 99.2 0 188.8-35.2 256-96l230.4 227.2c9.6 9.6 28.8 9.6 38.4 0C979.2 950.4 979.2 934.4 966.4 924.8zM102.4 441.6c0-185.6 150.4-339.2 339.2-339.2s339.2 150.4 339.2 339.2c0 89.6-35.2 172.8-92.8 233.6-3.2 0-3.2 3.2-6.4 3.2-3.2 3.2-3.2 3.2-3.2 6.4-60.8 57.6-144 92.8-233.6 92.8C256 780.8 102.4 627.2 102.4 441.6z" p-id="1271"></path></svg>
     <div class="searchPage">
       <div class="header">
         <div class="search">
           <input v-model='searchContent' type="text" />
-          <svg class="icon" @click='searchNewsBtn' aria-hidden="true">
-            <use xlink:href="#icon-sousuo"></use>
-          </svg>
+          <svg class="icon" @click='searchNewsBtn' t="1648682604996" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1270" width="64" height="64"><path d="M966.4 924.8l-230.4-227.2c60.8-67.2 96-156.8 96-256 0-217.6-176-390.4-390.4-390.4-217.6 0-390.4 176-390.4 390.4 0 217.6 176 390.4 390.4 390.4 99.2 0 188.8-35.2 256-96l230.4 227.2c9.6 9.6 28.8 9.6 38.4 0C979.2 950.4 979.2 934.4 966.4 924.8zM102.4 441.6c0-185.6 150.4-339.2 339.2-339.2s339.2 150.4 339.2 339.2c0 89.6-35.2 172.8-92.8 233.6-3.2 0-3.2 3.2-6.4 3.2-3.2 3.2-3.2 3.2-3.2 6.4-60.8 57.6-144 92.8-233.6 92.8C256 780.8 102.4 627.2 102.4 441.6z" p-id="1271"></path></svg>
         </div>
-        <svg class="icon close" @click='closeSearch' aria-hidden="true">
-          <use xlink:href="#icon-hao"></use>
-        </svg>
+        <svg class="icon close" @click='closeSearch' t="1648682740162" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1263" width="64" height="64"><path d="M544.448 499.2l284.576-284.576a32 32 0 0 0-45.248-45.248L499.2 453.952 214.624 169.376a32 32 0 0 0-45.248 45.248l284.576 284.576-284.576 284.576a32 32 0 0 0 45.248 45.248l284.576-284.576 284.576 284.576a31.904 31.904 0 0 0 45.248 0 32 32 0 0 0 0-45.248L544.448 499.2z" p-id="1264"></path></svg>
       </div>
       <div class="content">
         <p class="today">今天</p>
@@ -34,31 +28,39 @@
   </header>
 </template>
 
-<script>
-import { mapState, mapMutations } from 'vuex'
+<script lang="ts">
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+
 export default {
-  name: 'apphead', // Do not use built-in or reserved HTML elements as component id
+  name: 'Head',
   data () {
     return {
       imgs: [],
-      searchContent: ''
+      searchContent: '',
     }
   },
-  computed: {
-    ...mapState({
-      searchNews: state => state.SelectStore.searchNews
-    })
+  setup() {
+    const store = useStore()
+ 
+    return {
+      searchNews: computed(() => store.state.HomeStore.searchNews),
+
+      toggleMenu: () => store.commit('toggleMenu'),
+      openSearch: () => store.commit('openSearch'),
+      closeSearch: () => store.commit('closeSearch'),
+    }
   },
   watch: {
     searchContent (curVal) {
       if (curVal === '') {
-        this.$refs.newsItem.map((item) => {
+        (this as any).$refs.newsItem.map((item: any) => {
           item.style.display = 'block'
           item.className = ''
         })
       }
       if (curVal !== '') {
-        this.$refs.title.map((item) => {
+        (this as any).$refs.title.map((item: any) => {
           if (item.innerText.match(curVal)) {
             item.parentNode.parentNode.parentNode.className = 'hightColor'
           } else {
@@ -69,10 +71,10 @@ export default {
     }
   },
   methods: {
-    setClass (classname) {
+    setClass (classname: string) {
       return classname
     },
-    setSrc (src) {
+    setSrc (src: string) {
       return src
     },
     searchNewsBtn () {
@@ -83,19 +85,16 @@ export default {
       this.clearSearchContent()
     },
     goHome () {
-      this.$router.push('/select')
+      this.$router.push('/home')
     },
     clearSearchContent () {
       this.searchContent = ''
     },
-    ...mapMutations([
-      'toggleMenu', 'openSearch', 'closeSearch'
-    ])
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .head{
   height: 60px;
   background: #262627;

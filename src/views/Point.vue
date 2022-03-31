@@ -18,32 +18,40 @@
             <span class="times">{{p.times}}</span>
             <h2>{{p.title}}</h2>
              <p>{{p.msg}}</p>
-             <a class="join" href="javascript: void(0)"> > </a>
+             <a class="join" href="javascript: void(0)"> 查看 > </a>
           </div>
         </div>
       </div>
   </section>
 </template>
 
-<script>
-import { mapState } from 'vuex'
+<script lang="ts">
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+
 export default {
-  name: 'point',
-  computed: {
-    ...mapState({
-      points: state => state.PointStore.points
-    })
+  data() {
+    return {
+      name: 'point',
+    }
+  },
+  setup() {
+    const store = useStore()
+
+    return {
+      points: computed(() => store.state.PointStore.points),
+    }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .point{
   color: #fff;
   background: #fff;
   .question{
     height: 180px;
-    background: url(../assets/point/pointBg.jpg);
+    background: url(@/assets/point/pointBg.jpg);
     background-size: 100% 100%;
     .mask{
       display: flex;
@@ -93,7 +101,7 @@ export default {
       width: 100%;
       margin-bottom: 10px;
       overflow: hidden;
-      background: url(../assets/point/pointBg.jpg) no-repeat;
+      background: url(@/assets/point/pointBg.jpg) no-repeat;
       background-size: 100%;
       .mask{
         display: flex;
