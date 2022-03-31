@@ -12,6 +12,7 @@ export default defineConfig({
     port: 8000,
     open: true,
   },
+  base: './',
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src')

@@ -2,7 +2,7 @@
  * @author: 西风
  * @description 页面路由
  */
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import { Home, Point, Author } from '@/views'
 import store from '@/store'
 
@@ -28,7 +28,7 @@ const routes: Array<RouteRecordRaw> = [
 
 const router = createRouter({
   linkActiveClass: 'active',
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
 })
 

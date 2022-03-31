@@ -5,7 +5,7 @@
   "author": "daoket <daoket@163.com>",
   "scripts": {
     "start": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "repository": {
