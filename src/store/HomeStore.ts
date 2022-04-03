@@ -21,7 +21,7 @@ export default {
     loadBtn: false,
     loadAnimation: true,
     // newsUrl: 'https://route.showapi.com/109-35?showapi_appid=34477&showapi_sign=cfa5957a730f43d38886bd16469b2a86&channelId=5572a108b3cdc86cf39001cd&needContent=0&needHtml=1&page='
-    newsUrl: 'https://service-igtlr07d-1253811576.sh.apigw.tencentcs.com/release/news-mock'
+    newsUrl: 'https://service-rz8twnz7-1253811576.sh.apigw.tencentcs.com/release/news-mock'
   },
   mutations: {
     /**
