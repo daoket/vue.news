@@ -21,7 +21,7 @@ export default {
     loadBtn: false,
     loadAnimation: true,
     // newsUrl: 'https://route.showapi.com/109-35?showapi_appid=34477&showapi_sign=cfa5957a730f43d38886bd16469b2a86&channelId=5572a108b3cdc86cf39001cd&needContent=0&needHtml=1&page='
-    newsUrl: 'https://service-rz8twnz7-1253811576.sh.apigw.tencentcs.com/release/news-mock'
+    newsUrl: 'https://daoket.github.io/api/news.json'
   },
   mutations: {
     /**
@@ -64,28 +64,24 @@ export default {
     /**
      * @desc axios异步请求函数 类似jquery的ajax方法
      */
-    askNews ({commit, state}: any, url: string) {
-      axios({
-        method: 'get',
-        url: url
-      })
-        .then((res) => {
-          if (res.data.showapi_res_code === 0) {
-            let data = res.data.showapi_res_body.pagebean.contentlist
-            state.data = data
-            for (let i in data) {
-              state.searchNews.push({title: data[i].title, id: data[i].id})
-            }
-          } else {
-            const tips = document.createElement('p');
-            tips.className = 'tip';
-            tips.innerHTML = `<span>接口请求已达上限 /(ㄒoㄒ)/~~！！！</span>
-              <span>选择和AI聊天，缓解失望的心情吧：</span>
-              <a href="http://lx.openspeech.cn/auth/project/ai_niu/index.html">快来和我聊天！</a>`
-            document.querySelector('.news')?.appendChild(tips)
-          }
-          commit('loadNews')
-        })
+    async askNews ({commit, state}: any, url: string) {
+      const res = await axios.get(url)
+      
+      if (res.data.showapi_res_code === 0) {
+        let data = res.data.showapi_res_body.pagebean.contentlist
+        state.data = data
+        for (let i in data) {
+          state.searchNews.push({title: data[i].title, id: data[i].id})
+        }
+      } else {
+        const tips = document.createElement('p');
+        tips.className = 'tip';
+        tips.innerHTML = `<span>接口请求已达上限 /(ㄒoㄒ)/~~！！！</span>
+          <span>选择和AI聊天，缓解失望的心情吧：</span>
+          <a href="http://lx.openspeech.cn/auth/project/ai_niu/index.html">快来和我聊天！</a>`
+        document.querySelector('.news')?.appendChild(tips)
+      }
+      commit('loadNews')
     }
   }
 }

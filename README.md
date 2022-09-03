@@ -1,13 +1,13 @@
 <h2 align="center">Vue 新闻浏览</h2>
 <p align="center">
-  <a href="https://github.com/vitejs/vite"><img src="https://img.shields.io/badge/vite-v2.9.0-blue.svg" alt="vue-cli"></a>
-  <a href="https://github.com/vuejs/core"><img src="https://img.shields.io/badge/vue-v3.2.31-blue.svg" alt="Vue"></a>
-  <a href="https://github.com/vuejs/router"><img src="https://img.shields.io/badge/vue--router-v4.0.14-blue.svg" alt="vue-router"></a>
+  <a href="https://github.com/vitejs/vite"><img src="https://img.shields.io/badge/vite-v3.0.9-blue.svg" alt="vue-cli"></a>
+  <a href="https://github.com/vuejs/core"><img src="https://img.shields.io/badge/vue-v3.2.38-blue.svg" alt="Vue"></a>
+  <a href="https://github.com/vuejs/router"><img src="https://img.shields.io/badge/vue--router-v4.1.5-blue.svg" alt="vue-router"></a>
   <a href="https://github.com/vuejs/vuex"><img src="https://img.shields.io/badge/vuex-v4.0.2-blue.svg" alt="vuex"></a>
-  <a href="https://github.com/nolimits4web/Swiper"><img src="https://img.shields.io/badge/swiper-v8.0.7-blue.svg" alt="swiper"></a>
+  <a href="https://github.com/nolimits4web/Swiper"><img src="https://img.shields.io/badge/swiper-v8.3.2-blue.svg" alt="swiper"></a>
 </p>
-<p align="center">查看Demo:<a href="https://daoket.github.io/news/index.html">https://daoket.github.io/news/index.html</a>,在手机上效果更好，扫一扫体验</p>
-<p align="center"><a href="https://daoket.github.io/news/index.html"><img src="https://daoket.github.io/news/old/address.png" alt="vue-music"></a></p>
+<p align="center">查看<a href="https://daoket.github.io/pages/news">Demo</a>，在手机上效果更好，扫一扫体验</p>
+<p align="center"><a href="https://daoket.github.io/pages/news"><img width='200' src="./src/assets/news.png" alt="vue-music"></a></p>
 
 ### 实现的功能
 1. 首页轮播图
@@ -38,10 +38,10 @@ npm run build
 
 ### 首页
 <center>
-<img src="https://daoket.github.io/news/old/eg1.jpg" width='375' height='667'/>
+<img src="https://daoket.github.io/res/img/home.png" width='375' height='667'/>
 </center>
 
 ### 菜单
 <center>
-<img src="https://daoket.github.io/news/old/eg2.jpg" width='375' height='667'/>
+<img src="https://daoket.github.io/res/img/menu.png" width='375' height='667'/>
 </center>
