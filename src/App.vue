@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import { Head, Menu, Nav, Foot } from '@/components'
+</script>
+
 <template>
   <div id="app">
     <Menu />
@@ -13,20 +17,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { Head, Menu, Nav, Foot } from '@/components'
-
-export default {
-  name: 'App',
-  components: {
-    Head,
-    Menu,
-    Nav,
-    Foot,
-  }
-}
-</script>
 
 <style>
 #app{
